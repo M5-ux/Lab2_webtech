@@ -128,3 +128,29 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+# For VS Code
+.vscode/
+# For Sublime Text
+.sublime-workspace
+# For Vim
+.swp
+
+# Ignore user-specific .gitignore file
+.gitignore.local
+
+# Custom ignore for local editor settings
+.editorconfig
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+ehthumbs.db
+
+# Linux
+*.swp
+
+# User-specific files
+.idea/
