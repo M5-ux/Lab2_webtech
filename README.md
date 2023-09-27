@@ -43,13 +43,16 @@ L'application sera accessible à l'adresse [http://localhost:8081](http://localh
 
 ## Structure du projet
 
-- `index.js` : Point d'entrée de l'application.
-- `app.js` : Gestionnaire de routes et de logique de l'application.
+- `index.js` : Point d'entrée de l'application
+- `handles.js` : Gestionnaire de routes et de logique de l'application.
 - `content/about.json` : Fichier JSON contenant des informations à afficher sur la page "À propos".
 
 ## Contribuer
 
 N'hésitez pas à contribuer en ouvrant des problèmes ou en soumettant des demandes de tirage (pull requests) pour améliorer l'application.
 
-
+## Auteur
+- Jonathan VELIN
+- Mathias NERIS
+- Omar 
 
