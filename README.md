@@ -26,14 +26,20 @@ npm install
 Pour lancer l'application, utilisez l'une des commandes suivantes :
 
 - Pour démarrer l'application en mode production :
+```
 npm start
+```
 
 
 - Pour démarrer l'application en mode développement avec nodemon (rechargement automatique lors des modifications) :
+```
 npm run dev
+```
 
 - Pour démarrer l'application en mode test avec SuperTest : 
+```
 npx mocha app.test.js
+``````
 
 
 L'application sera accessible à l'adresse [http://localhost:8080](http://localhost:8080) dans votre navigateur.
@@ -61,17 +67,19 @@ N'hésitez pas à contribuer en ouvrant des problèmes ou en soumettant des dema
 
 ## Auteurs
 
-<div style="display: flex; justify-content: space-around;">
-    <div style="width: 100px; height: 100px; overflow: hidden; border-radius: 50%;">
-        <img src="https://avatars.githubusercontent.com/u/62987115?v=4" alt="Jonathan VELIN" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
-    </div>
-    <div style="width: 100px; height: 100px; overflow: hidden; border-radius: 50%;">
-        <img src="https://avatars.githubusercontent.com/u/74655579?v=4" alt="Mathias NERIS" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
-    </div>
-    <div style="width: 100px; height: 100px; overflow: hidden; border-radius: 50%;">
-        <img src="https://avatars.githubusercontent.com/u/76867208?v=4" alt="Omar LAHBABI" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
-    </div>
-</div>
+<kbd>
+  <div style="display: flex; justify-content: space-around;">
+      <div style="width: 100px; height: 100px; overflow: hidden; border-radius: 50%;">
+          <img src="https://avatars.githubusercontent.com/u/62987115?v=4" alt="Jonathan VELIN" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
+      </div>
+      <div style="width: 100px; height: 100px; overflow: hidden; border-radius: 50%;">
+          <img src="https://avatars.githubusercontent.com/u/74655579?v=4" alt="Mathias NERIS" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
+      </div>
+      <div style="width: 100px; height: 100px; overflow: hidden; border-radius: 50%;">
+          <img src="https://avatars.githubusercontent.com/u/76867208?v=4" alt="Omar LAHBABI" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
+      </div>
+  </div>
+</kbd>
 
 
 
