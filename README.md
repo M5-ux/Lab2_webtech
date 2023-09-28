@@ -67,19 +67,9 @@ N'hésitez pas à contribuer en ouvrant des problèmes ou en soumettant des dema
 
 ## Auteurs
 
-<kbd>
-  <div style="display: flex; justify-content: space-around;">
-      <div style="width: 50px; height: 500px; overflow: hidden; border-radius: 50%;">
-          <img src="https://avatars.githubusercontent.com/u/62987115?v=4" alt="Jonathan VELIN" style="width: 50%; height: 50%; object-fit: cover; border-radius: 50%;">
-      </div>
-      <div style="width: 100px; height: 100px; overflow: hidden; border-radius: 50%;">
-          <img src="https://avatars.githubusercontent.com/u/74655579?v=4" alt="Mathias NERIS" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
-      </div>
-      <div style="width: 100px; height: 100px; overflow: hidden; border-radius: 50%;">
-          <img src="https://avatars.githubusercontent.com/u/76867208?v=4" alt="Omar LAHBABI" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
-      </div>
-  </div>
-</kbd>
+- [Jonathan VELIN](https://github.com/jonathan971)
+- [Mathias NERIS](https://github.com/M5-ux)
+- [Omar LAHBABI](https://github.com/omar2929)
 
 
 
