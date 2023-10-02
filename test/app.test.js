@@ -1,5 +1,5 @@
 const request = require('supertest'); //Mise en place des test automatisé avec SuperTest
-const app = require('/Users/jojo/Desktop/ING4/WebTech/ece-webtech-gr06-605/index.js');
+const app = require('/Users/jojo/Desktop/ING4/WebTech/ece-webtech-gr06-605/index.js'); //Ici remplacer avvec votre chemin personnel vers index.js
 const chai = require('chai');
 
 const expect = chai.expect;
