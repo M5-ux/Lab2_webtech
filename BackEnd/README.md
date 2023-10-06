@@ -1,4 +1,4 @@
-# FrontEnd
+# BackEnd
 
 Ceci est un exemple d'application Node.js simple avec plusieurs routes. L'application utilise le module HTTP pour créer un serveur web et gérer différentes routes pour gerer un stock d'articles.
 
