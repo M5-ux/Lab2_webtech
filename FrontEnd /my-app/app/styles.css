@@ -1,0 +1,16 @@
+/* styles.css */
+.custom-button {
+    background-color: #3498db; /* Couleur de fond */
+    color: #ffffff; /* Couleur du texte */
+    padding: 10px 20px; /* Rembourrage (padding) */
+    border: none; /* Supprimer la bordure */
+    border-radius: 5px; /* Coins arrondis */
+    cursor: pointer; /* Curseur de souris */
+    font-size: 16px; /* Taille de police */
+    margin: 20px 0; 
+  }
+  
+  .custom-button:hover {
+    background-color: #2980b9; /* Couleur de fond au survol */
+  }
+  
