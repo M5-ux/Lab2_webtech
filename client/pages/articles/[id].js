@@ -8,15 +8,13 @@ const ArticlePage = () => {
 
   // Dans un vrai projet, vous chargeriez les données de l'article en utilisant l'ID
   const articleData = {
-    id: id,
-    title: 'Titre de l\'article #' + id,
-    content: 'Contenu de l\'article #' + id,
+    id: ' Article numero : ' + id,
+
   };
 
   return (
     <div>
-      <h1>{articleData.title}</h1>
-      <p>{articleData.content}</p>
+      <h1>{articleData.id}</h1>
     </div>
   );
 };

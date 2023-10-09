@@ -2,9 +2,9 @@
   "name": "techweb",
   "version": "1.0.0",
   "description": "",
-  "main": "../BackEnd/app/index.js",
+  "main": "../server/app/index.js",
   "scripts": {
-    "start": "node ../BackEnd/app/index.js",
+    "start": "node ../server/app/index.js",
     "dev" : "next"
   },
   "author": "",

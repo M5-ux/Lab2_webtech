@@ -1,4 +1,4 @@
-# BackEnd
+# Application Node.js avec Routes
 
 Ceci est un exemple d'application Node.js simple avec plusieurs routes. L'application utilise le module HTTP pour créer un serveur web et gérer différentes routes pour gerer un stock d'articles.
 
@@ -25,28 +25,25 @@ npm install
 
 Pour lancer l'application, utilisez l'une des commandes suivantes :
 
-- Pour démarrer l'application en mode production :
-```
-npm start
-```
-
-
-- Pour démarrer l'application en mode développement avec nodemon (rechargement automatique lors des modifications) :
+- Pour démarrer l'application en mode développement (rechargement automatique lors des modifications) :
 ```
 npm run dev
 ```
 
-- Pour démarrer l'application en mode test avec SuperTest : 
-```
-npx mocha app.test.js
-``````
-
-
-L'application sera accessible à l'adresse [http://localhost:8080](http://localhost:8080) dans votre navigateur.
+L'application sera accessible à l'adresse [http://localhost:3000](http://localhost:3000) dans votre navigateur.
 
 ## Routes disponibles
 
+- `/` : Page d'accueil avec un lien vers `/articles`, `/about` et `/contacts`.
+- `/articles` : Permet d'obtenir la liste de tous les articles.
+- `/articles/:articleId` : Permet d'obtenir un article par son ID.
+- `/about` : Affiche les informations du site.
+- `/contacts` : Nos contacts
+
 ## Structure du projet
+
+- `pages` : Toutes les pages JS de notre side
+- `styles` : Gestionnaire de styles du sitedépendances, les scripts de démarrage, etc.
 
 ## Contribuer
 
