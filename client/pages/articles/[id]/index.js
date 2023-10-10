@@ -1,4 +1,4 @@
-// app/articles/[id].js
+
 import React from 'react';
 import { useRouter } from 'next/router';
 
