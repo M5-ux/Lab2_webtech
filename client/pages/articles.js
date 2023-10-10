@@ -64,29 +64,29 @@ const articles = [
   ];
   
 
-  export default function Articles() {
-    return (
-        <div>
-          <h1>Liste d'Articles</h1>
-          <ul style={{ listStyleType: 'none', padding: 0 }}>
-            {articles.map((article) => (
-              <li key={article.id} style={{ marginBottom: '20px' }}>
-                <h2 style={{ color: 'blue' }}>{article.title}</h2>
-                <p>{article.content}</p>
-                <p>Date: {article.date}</p>
-                <p>Auteur: {article.author}</p>
-                <h3>Commentaires:</h3>
-                <ul>
-                  {article.comments.map((comment) => (
-                    <li key={comment.id}>
-                      <p>{comment.content}</p>
-                      <p>Auteur du commentaire: {comment.author}</p>
-                    </li>
-                  ))}
-                </ul>
-              </li>
-            ))}
-          </ul>
-        </div>
-      );
+export default function Articles() {
+  return (
+    <div className="container mx-auto px-4 py-6">
+      <h1 className="text-3xl font-bold mb-6">Liste d'Articles</h1>
+      <ul className="space-y-8">
+        {articles.map((article) => (
+          <li key={article.id} className="border-b-2 border-gray-200 pb-6">
+            <h2 className="text-2xl text-blue-600">{article.title}</h2>
+            <p className="bg-green-500 p-2 rounded mt-2">{article.content}</p>
+            <p className="mt-2">Date: {article.date}</p>
+            <p>Auteur: {article.author}</p>
+            <h3 className="text-xl font-medium mt-4 mb-2">Commentaires:</h3>
+            <ul className="list-decimal list-inside pl-4">
+              {article.comments.map((comment) => (
+                <li key={comment.id} className="mt-1">
+                  <p>{comment.content}</p>
+                  <p className="text-sm text-gray-600">Auteur du commentaire: {comment.author}</p>
+                </li>
+              ))}
+            </ul>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
 }
