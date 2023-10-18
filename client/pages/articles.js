@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 
 const articles = [
     {
@@ -64,10 +65,17 @@ const articles = [
   ];
   
 
-export default function Articles() {
+export default function Articles({ articles }) {
   return (
     <div className="container mx-auto px-4 py-6">
+       <div className="flex justify-between items-center">
       <h1 className="text-3xl font-bold mb-6">Liste d'Articles</h1>
+      <Link href="/">
+          <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+          Retour à l'Accueil
+          </button>
+        </Link>
+      </div>
       <ul className="space-y-8">
         {articles.map((article) => (
           <li key={article.id} className="border-b-2 border-gray-200 pb-6">
@@ -90,4 +98,12 @@ export default function Articles() {
       </ul>
     </div>
   );
+}
+
+export async function getStaticProps() {
+  return {
+    props: {
+      articles,
+    },
+  };
 }
