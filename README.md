@@ -43,7 +43,8 @@ L'application sera accessible à l'adresse [http://localhost:3000](http://localh
 ## Structure du projet
 
 - `pages` : Toutes les pages JS de notre side
-- `styles` : Gestionnaire de styles du sitedépendances, les scripts de démarrage, etc.
+- `styles` : Ce projet utilise Tailwind CSS, un framework CSS
+             Tailwind fournit des utilitaires à faible niveau qui permettent de construire des designs personnalisés sans quitter votre HTML. Cela                      signifie plus de rapidité et de flexibilité lors du développement.
 
 ## Contribuer
 
