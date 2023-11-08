@@ -32,16 +32,17 @@ L'application sera accessible à l'adresse [http://localhost:3000](http://localh
 
 ## Routes disponibles
 
-- `/` : Page d'accueil avec un lien vers `/articles`, `/about` et `/contacts`.
+- `/` : Page d'accueil avec un lien vers `/articles`, `/about`, `/contacts`, `/login-controlled` en passanrt par un bouton Login.
 - `/articles` : Permet d'obtenir la liste de tous les articles.
 - `/articles/:articleId` : Permet d'obtenir un article par son ID.
 - `/about` : Affiche les informations du site.
 - `/contacts` : Nos contacts
+- `/login-controlled` : Page de connexion
 
 ## Structure du projet
 
-- `pages` : Toutes les pages JS de notre side
-- `styles` : Gestionnaire de styles du sitedépendances, les scripts de démarrage, etc.
+- `pages` : Toutes les pages JS de notre site
+- `styles` : Gestionnaire de styles du site dépendances, les scripts de démarrage, etc.
 
 ## Contribuer
 
