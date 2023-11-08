@@ -9,15 +9,17 @@ Avant de commencer, assurez-vous d'avoir Node.js installé sur votre système. V
 ## Installation
 
 1. Clonez ce référentiel sur votre ordinateur en utilisant la commande suivante :
-
+```
 git clone https://github.com/M5-ux/ece-webtech-gr06-605
-
+```
 2. Accédez au répertoire du projet :
+```
    cd nom-du-repertoire
-
+```
 3. Installez les dépendances en exécutant la commande suivante :
+```
    npm install
-
+```
 ## Utilisation
 
 Pour lancer l'application, utilisez l'une des commandes suivantes :
