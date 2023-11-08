@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { useRouter } from 'next/router';
 
@@ -9,7 +8,6 @@ const ArticlePage = () => {
   // Dans un vrai projet, vous chargeriez les données de l'article en utilisant l'ID
   const articleData = {
     id: ' Article numero : ' + id,
-
   };
 
   return (
