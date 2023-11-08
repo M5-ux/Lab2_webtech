@@ -1,4 +1,3 @@
-// pages/index.js
 import Link from 'next/link';
 import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -35,6 +34,7 @@ export default function Home() {
   }, []);
 
   return (
+
     <div className="min-h-screen flex flex-col items-center justify-center bg-blue-100 p-8">
       <h1 className="text-4xl font-bold text-blue-700 mb-8">
         Bienvenue sur ma page d'accueil Next.js !
@@ -102,6 +102,7 @@ export default function Home() {
           </Link>
         )}
       </div>
+
     </div>
   );
 }
