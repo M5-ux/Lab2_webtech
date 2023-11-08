@@ -1,43 +1,47 @@
 import React from 'react';
+import Link from 'next/link';
 
 const articles = [
-    {
-      id: '12143a72-7d42-4bec-bc0b-e5abee18719c',
-      title: 'Handmade Concrete Pizza',
-      content: 'Expedita consequatur beatae omnis. Enim et tenetur et distinctio mollitia odio. Id et dolores et.',
-      date: '26/10/2022',
-      author: 'Mrs. Cedric Fahey',
-      comments: [
-        {
-          id: 'a9e9009c-00e2-4790-85d5-c4675dbd9706',
-          timestamp: '1696814166309',
-          content: 'Voluptatum itaque nostrum quos provident praesentium optio et ad omnis.',
-          author: 'Angelina Douglas',
-        },
-        {
-          id: '1dc8a147-85d8-4800-8db9-ea77d5e2929f',
-          timestamp: '1696854426140',
-          content: 'Ea similique et deserunt.',
-          author: 'Jacquelyn Koepp',
-        },
-      ],
-    },
-    {
-      id: 'd66812ca-9be2-488c-9223-285b238bc908',
-      title: 'Rustic Concrete Shirt',
-      content: 'Corporis doloremque consequatur. Ut consectetur nemo dolorum rerum ea sapiente accusantium aspernatur. Sed consequatur voluptatem fugit maxime voluptatem quibusdam sequi ut. Qui error et eius maxime delectus atque quo.',
-      date: '16/02/2023',
-      author: 'Richard Kuhn',
-      comments: [
-        {
-          id: '021725ec-3797-45cf-b60a-e59e9779ddbd',
-          timestamp: '1696803930232',
-          content: 'Dolore occaecati ratione totam commodi occaecati non.',
-          author: 'Dr. Noel Heller',
-        },
-      ],
-    },
-    {
+  {
+    id: '12143a72-7d42-4bec-bc0b-e5abee18719c',
+    title: 'Handmade Concrete Pizza',
+    content:
+      'Expedita consequatur beatae omnis. Enim et tenetur et distinctio mollitia odio. Id et dolores et.',
+    date: '26/10/2022',
+    author: 'Mrs. Cedric Fahey',
+    comments: [
+      {
+        id: 'a9e9009c-00e2-4790-85d5-c4675dbd9706',
+        timestamp: '1696814166309',
+        content:
+          'Voluptatum itaque nostrum quos provident praesentium optio et ad omnis.',
+        author: 'Angelina Douglas',
+      },
+      {
+        id: '1dc8a147-85d8-4800-8db9-ea77d5e2929f',
+        timestamp: '1696854426140',
+        content: 'Ea similique et deserunt.',
+        author: 'Jacquelyn Koepp',
+      },
+    ],
+  },
+  {
+    id: 'd66812ca-9be2-488c-9223-285b238bc908',
+    title: 'Rustic Concrete Shirt',
+    content:
+      'Corporis doloremque consequatur. Ut consectetur nemo dolorum rerum ea sapiente accusantium aspernatur. Sed consequatur voluptatem fugit maxime voluptatem quibusdam sequi ut. Qui error et eius maxime delectus atque quo.',
+    date: '16/02/2023',
+    author: 'Richard Kuhn',
+    comments: [
+      {
+        id: '021725ec-3797-45cf-b60a-e59e9779ddbd',
+        timestamp: '1696803930232',
+        content: 'Dolore occaecati ratione totam commodi occaecati non.',
+        author: 'Dr. Noel Heller',
+      },
+    ],
+  },
+  {
     id: '6ec0bd7f-11c0-43da-975e-2a8ad9ebae0b',
     title: 'My article',
     content: 'Content of the article.',
@@ -58,16 +62,22 @@ const articles = [
         articleId: '6ec0bd7f-11c0-43da-975e-2a8ad9ebae0b',
         author: 'Jonathan VELIN',
       },
-    ]
-    }
-    // Ajoutez d'autres articles ici...
-  ];
-  
+    ],
+  },
+  // Ajoutez d'autres articles ici...
+];
 
-export default function Articles() {
+export default function Articles({ articles }) {
   return (
     <div className="container mx-auto px-4 py-6">
-      <h1 className="text-3xl font-bold mb-6">Liste d'Articles</h1>
+      <div className="flex justify-between items-center">
+        <h1 className="text-3xl font-bold mb-6">Liste d&apos;Articles</h1>
+        <Link href="/">
+          <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+            Retour à l&apos;Accueil
+          </button>
+        </Link>
+      </div>
       <ul className="space-y-8">
         {articles.map((article) => (
           <li key={article.id} className="border-b-2 border-gray-200 pb-6">
@@ -81,7 +91,9 @@ export default function Articles() {
               {article.comments.map((comment) => (
                 <li key={comment.id} className="mt-1">
                   <p>{comment.content}</p>
-                  <p className="text-sm text-gray-600">Auteur du commentaire: {comment.author}</p>
+                  <p className="text-sm text-gray-600">
+                    Auteur du commentaire: {comment.author}
+                  </p>
                 </li>
               ))}
             </ul>
@@ -90,4 +102,12 @@ export default function Articles() {
       </ul>
     </div>
   );
+}
+
+export async function getStaticProps() {
+  return {
+    props: {
+      articles,
+    },
+  };
 }

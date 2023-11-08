@@ -12,20 +12,18 @@ Avant de commencer, assurez-vous d'avoir Node.js installé sur votre système. V
 
 git clone https://github.com/M5-ux/ece-webtech-gr06-605
 
+2. Accédez au répertoire du projet :
+   cd nom-du-repertoire
 
-2. Accédez au répertoire du projet : 
-cd nom-du-repertoire
-
-
-3. Installez les dépendances en exécutant la commande suivante : 
-npm install
-
+3. Installez les dépendances en exécutant la commande suivante :
+   npm install
 
 ## Utilisation
 
 Pour lancer l'application, utilisez l'une des commandes suivantes :
 
 - Pour démarrer l'application en mode développement (rechargement automatique lors des modifications) :
+
 ```
 npm run dev
 ```
@@ -54,6 +52,3 @@ N'hésitez pas à contribuer en ouvrant des problèmes ou en soumettant des dema
 - [Jonathan VELIN](https://github.com/jonathan971)
 - [Mathias NERIS](https://github.com/M5-ux)
 - [Omar LAHBABI](https://github.com/omar2929)
-
-
-
