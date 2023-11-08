@@ -14,11 +14,11 @@ git clone https://github.com/M5-ux/ece-webtech-gr06-605
 ```
 2. Accédez au répertoire du projet :
 ```
-   cd nom-du-repertoire
+cd nom-du-repertoire
 ```
 3. Installez les dépendances en exécutant la commande suivante :
 ```
-   npm install
+npm install
 ```
 ## Utilisation
 
