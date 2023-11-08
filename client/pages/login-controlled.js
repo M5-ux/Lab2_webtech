@@ -1,44 +1,72 @@
 import React, { useState } from 'react';
-import users from './auth';
+import { useRouter } from 'next/router';
+import LoggedIn from './components/LoggedIn';
 
 function LoginControlled() {
-  const [formData, setFormData] = useState({
-    username: '',
-    password: '',
-  });
+    const router = useRouter();
 
-  const [error, setError] = useState(null);
-  const [authenticated, setAuthenticated] = useState(false);
+    const [formData, setFormData] = useState({
+        username: '',
+        password: '',
+      });
+    
+      const [error, setError] = useState(null);
+      const [authenticated, setAuthenticated] = useState(false);
+    
+      const handleInputChange = (event) => {
+        const { name, value } = event.target;
+        setFormData({
+          ...formData,
+          [name]: value,
+        });
+      };
+    
+      const handleSubmit = (event) => {
+        event.preventDefault();
+        const { username, password } = formData;
+    
+        // Make an API request to fetch user data
+        fetch('/api/profile')
+          .then((response) => {
+            if (response.status === 401) {
+              setError('Unauthorized');
+              return null;
+            }
+            if (response.status === 200) {
+              return response.json();
+            }
+            throw new Error('Failed to fetch user data');
+          })
+          .then((userData) => {
+            if (userData) {
+              // Check if the entered username and password match any user in the fetched data
+              const user = userData.find(
+                (user) => user.username === username && user.password === password
+              );
+    
+              if (user) {
+                console.log('Authenticated as:', user.username);
+                setError(null);
+                setAuthenticated(true);
+    
+                // Redirect to the main page after successful authentication
 
-  const handleInputChange = (event) => {
-    const { name, value } = event.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-  };
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const { username, password } = formData;
-
-    const user = users.find(
-      (user) => user.username === username && user.password === password,
-    );
-
-    if (user) {
-      console.log('Authentifié en tant que:', user.username);
-      setError(null);
-      setAuthenticated(true);
-
-      // Efface le message "Authentification réussie" après 3 secondes
-      setTimeout(() => {
-        setAuthenticated(false);
-      }, 3000);
-    } else {
-      setError('Identifiants invalides. Veuillez réessayer.');
-    }
-  };
+          // Efface le message "Authentification réussie" après 3 secondes
+          setTimeout(() => {
+            setAuthenticated(false);
+            router.push('/');
+          }, 3000);
+                // Redirect to the home page or perform other actions upon successful authentication
+              } else {
+                setError('Invalid credentials. Please try again.');
+              }
+            }
+          })
+          .catch((error) => {
+            console.error(error);
+            setError('Failed to authenticate. Please try again.');
+          });
+      };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
@@ -52,7 +80,7 @@ function LoginControlled() {
           <div className="rounded-md shadow-sm -space-y-px">
             <div>
               <label htmlFor="username" className="sr-only">
-                Nom d&aposutilisateur:
+                Nom d&apo;sutilisateur:
               </label>
               <input
                 type="text"
@@ -82,6 +110,7 @@ function LoginControlled() {
           {authenticated ? (
             <div className="text-green-500 text-center">
               Authentification réussie !
+              <LoggedIn />
             </div>
           ) : (
             error && <div className="text-red-500 text-center">{error}</div>

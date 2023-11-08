@@ -5,10 +5,21 @@ function LoggedOut() {
   const { login } = useUser();
 
   const onClickLogin = async () => {
-    // Replace with your API request to fetch user data
-    const response = await fetch('/api/profile');
-    const user = await response.json();
-    login(user);
+    try {
+      // Make an API request to your backend to fetch user data
+      const response = await fetch('/api/profile'); 
+      if (!response.ok) {
+        throw new Error('Failed to fetch user data');
+      }
+
+      // Parse the response JSON
+      const userData = await response.json();
+
+      // Assuming userData contains the user information
+      login(userData);
+    } catch (error) {
+      console.error('Error logging in:', error.message);
+    };
   };
 
   return (

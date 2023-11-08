@@ -2,6 +2,7 @@ import Link from 'next/link';
 import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
+import LoggedOut from './components/LoggedOut';
 
 export default function Home() {
   const [userProfile, setUserProfile] = useState(null);
@@ -89,13 +90,14 @@ export default function Home() {
             onClick={() => {
               // Implémentez votre logique de déconnexion ici
               setAuthenticated(false); // Déconnecte l'utilisateur
+              <LoggedOut />
             }}
           >
             Logout
           </button>
         ) : null}
         {authenticated ? null : (
-          <Link href="/login-controlled">
+          <Link href="./login-controlled">
             <button className="bg-green-500 hover:bg-green-700 text-white text-sm font-semibold py-1 px-2 rounded-lg transition duration-300 ease-in-out transform hover:scale-105">
               Login
             </button>

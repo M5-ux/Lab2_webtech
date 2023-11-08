@@ -8,10 +8,20 @@ export default (req, res) => {
       return;
     }
   
-    const userProfile = {
-      username: 'jojo',
-      email: 'jojo@ankazla.com',
-    };
+    const userProfile =[
+      {
+        username: 'jojo',
+        password: 'lakaz',
+      },
+      {
+        username: 'mathias',
+        password: 'mako',
+      },
+      {
+        username: 'omar',
+        password: 'makomè',
+      },
+    ];
   
     res.status(200).json(userProfile);
   };
