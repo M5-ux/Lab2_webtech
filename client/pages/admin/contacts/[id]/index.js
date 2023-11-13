@@ -1,9 +1,3 @@
-//export default async function Post() {
-// const { data } = await supabase.from('contact').select()
-
-
-//return <pre>{ JSON.stringify(data, null, 2)}</pre>
-//}
 import { useEffect, useState } from 'react';
 import { useSupabaseClient } from '@supabase/auth-helpers-react';
 import { createClient } from '@supabase/supabase-js';
