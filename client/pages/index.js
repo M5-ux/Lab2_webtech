@@ -76,6 +76,12 @@ export default function Home() {
               Liste d'articles
             </button>
           </Link>
+
+          <Link href="/admin/contacts">
+            <button className="bg-blue-500 hover:bg-blue-700 text-white text-lg font-semibold py-2 px-6 rounded-full transition duration-300 ease-in-out transform hover:scale-105">
+              liste de contacts
+            </button>
+          </Link>
         </div>
 
         <p className="mt-8 text-gray-600 text-sm">
