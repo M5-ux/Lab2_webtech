@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useSupabaseClient } from '@supabase/auth-helpers-react';
+import { createClient } from '@supabase/supabase-js';
 
 export const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL,
@@ -8,23 +9,17 @@ export const supabase = createClient(
 
 function ListeContacts({}) {
   const supabase = useSupabaseClient();
-  const [data, setData] = useState()
+  const [data, setData] = useState();
 
   useEffect(() => {
     async function loadData() {
-      const { data } = await supabase.from('contacts').select('*')
-      setData(data)
+      const { data } = await supabase.from('contacts').select('*');
+      setData(data);
     }
 
-    loadData()
-  }, []);
-
-
-
-  return (
-    <pre>{JSON.stringify(data, null, 2)}</pre>
-
-  );
+    loadData();
+  }, [supabase]);
+  return <pre>{JSON.stringify(data, null, 2)}</pre>;
 }
 
 export default ListeContacts;
