@@ -4,7 +4,7 @@ import { createClient } from '@supabase/supabase-js';
 
 function listeContacts({ contact }) {
   if (!contact) {
-    return <p>Loading...</p>;
+    return <p>chargement...</p>;
   }
 
   return (

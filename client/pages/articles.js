@@ -81,7 +81,6 @@ export default function Articles({ articles }) {
       <ul className="space-y-8">
         {articles.map((article) => (
           <li key={article.id} className="border-b-2 border-gray-200 pb-6">
-            <h2 className="text-2xl text-red-600">{article.id}</h2>
             <h2 className="text-2xl text-blue-600">{article.title}</h2>
             <p className="bg-green-500 p-2 rounded mt-2">{article.content}</p>
             <p className="mt-2">Date: {article.date}</p>
