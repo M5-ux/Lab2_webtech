@@ -1,11 +1,10 @@
 import 'styles/globals.css';
-import { createPagesBrowserClient } from '@supabase/auth-helpers-nextjs'
-import { SessionContextProvider } from '@supabase/auth-helpers-react'
-import { useState } from 'react'
+import { createPagesBrowserClient } from '@supabase/auth-helpers-nextjs';
+import { SessionContextProvider } from '@supabase/auth-helpers-react';
+import { useState } from 'react';
 
 function MyApp({ Component, pageProps }) {
-
-  const [supabaseClient] = useState(() => createPagesBrowserClient())
+  const [supabaseClient] = useState(() => createPagesBrowserClient());
 
   return (
     <SessionContextProvider
@@ -14,10 +13,7 @@ function MyApp({ Component, pageProps }) {
     >
       <Component {...pageProps} />
     </SessionContextProvider>
-  )
+  );
 }
 
 export default MyApp;
-
-
-

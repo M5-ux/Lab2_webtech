@@ -1,57 +1,61 @@
-const request = require('supertest'); //Mise en place des test automatisé avec SuperTest
-const app = require('../app/index.js'); //Ici remplacer avvec votre chemin personnel vers index.js
-const chai = require('chai');
+const request = require("supertest"); //Mise en place des test automatisé avec SuperTest
+const app = require("../app/index.js"); //Ici remplacer avvec votre chemin personnel vers index.js
+const chai = require("chai");
 
 const expect = chai.expect;
 
-describe('Test des routes de l\'application Express', () => {
-  it('Devrait obtenir la liste de tous les articles', async () => {
-    const response = await request(app).get('/articles');
+describe("Test des routes de l'application Express", () => {
+  it("Devrait obtenir la liste de tous les articles", async () => {
+    const response = await request(app).get("/articles");
     expect(response.status).to.equal(200);
-    expect(response.body).to.be.an('array');
+    expect(response.body).to.be.an("array");
   });
 
-  it('Devrait ajouter un nouvel article', async () => {
+  it("Devrait ajouter un nouvel article", async () => {
     const newArticle = {
-      title: 'Nouvel article',
-      content: 'Contenu du nouvel article',
-      author: 'Auteur du nouvel article',
+      title: "Nouvel article",
+      content: "Contenu du nouvel article",
+      author: "Auteur du nouvel article",
     };
-    const response = await request(app).post('/articles').send(newArticle);
+    const response = await request(app).post("/articles").send(newArticle);
     expect(response.status).to.equal(201);
-    expect(response.body).to.have.property('id');
+    expect(response.body).to.have.property("id");
   });
 
-  it('Devrait obtenir un article par son ID', async () => {
-    const articleId = '6ec0bd7f-11c0-43da-975e-2a8ad9ebae0b';
+  it("Devrait obtenir un article par son ID", async () => {
+    const articleId = "6ec0bd7f-11c0-43da-975e-2a8ad9ebae0b";
     const response = await request(app).get(`/articles/${articleId}`);
     expect(response.status).to.equal(200);
-    expect(response.body).to.have.property('id', articleId);
+    expect(response.body).to.have.property("id", articleId);
   });
 
-  it('Devrait obtenir tous les commentaires d\'un article', async () => {
-    const articleId = '6ec0bd7f-11c0-43da-975e-2a8ad9ebae0b';
+  it("Devrait obtenir tous les commentaires d'un article", async () => {
+    const articleId = "6ec0bd7f-11c0-43da-975e-2a8ad9ebae0b";
     const response = await request(app).get(`/articles/${articleId}/comments`);
     expect(response.status).to.equal(200);
-    expect(response.body).to.be.an('array');
+    expect(response.body).to.be.an("array");
   });
 
-  it('Devrait ajouter un commentaire à un article', async () => {
-    const articleId = '6ec0bd7f-11c0-43da-975e-2a8ad9ebae0b';
+  it("Devrait ajouter un commentaire à un article", async () => {
+    const articleId = "6ec0bd7f-11c0-43da-975e-2a8ad9ebae0b";
     const newComment = {
-      content: 'Nouveau commentaire',
-      author: 'Auteur du nouveau commentaire',
+      content: "Nouveau commentaire",
+      author: "Auteur du nouveau commentaire",
     };
-    const response = await request(app).post(`/articles/${articleId}/comments`).send(newComment);
+    const response = await request(app)
+      .post(`/articles/${articleId}/comments`)
+      .send(newComment);
     expect(response.status).to.equal(201);
-    expect(response.body).to.have.property('id');
+    expect(response.body).to.have.property("id");
   });
 
-  it('Devrait obtenir un commentaire spécifique d\'un article', async () => {
-    const articleId = '6ec0bd7f-11c0-43da-975e-2a8ad9ebae0b';
-    const commentId = '9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d';
-    const response = await request(app).get(`/articles/${articleId}/comments/${commentId}`);
+  it("Devrait obtenir un commentaire spécifique d'un article", async () => {
+    const articleId = "6ec0bd7f-11c0-43da-975e-2a8ad9ebae0b";
+    const commentId = "9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d";
+    const response = await request(app).get(
+      `/articles/${articleId}/comments/${commentId}`,
+    );
     expect(response.status).to.equal(200);
-    expect(response.body).to.have.property('id', commentId);
+    expect(response.body).to.have.property("id", commentId);
   });
 });

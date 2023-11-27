@@ -12,35 +12,33 @@ Avant de commencer, assurez-vous d'avoir Node.js installé sur votre système. V
 
 git clone https://github.com/M5-ux/ece-webtech-gr06-605
 
+2. Accédez au répertoire du projet :
+   cd nom-du-repertoire
 
-2. Accédez au répertoire du projet : 
-cd nom-du-repertoire
-
-
-3. Installez les dépendances en exécutant la commande suivante : 
-npm install
-
+3. Installez les dépendances en exécutant la commande suivante :
+   npm install
 
 ## Utilisation
 
 Pour lancer l'application, utilisez l'une des commandes suivantes :
 
 - Pour démarrer l'application en mode production :
+
 ```
 npm start
 ```
 
-
 - Pour démarrer l'application en mode développement avec nodemon (rechargement automatique lors des modifications) :
+
 ```
 npm run dev
 ```
 
-- Pour démarrer l'application en mode test avec SuperTest : 
+- Pour démarrer l'application en mode test avec SuperTest :
+
 ```
 npx mocha app.test.js
-``````
-
+```
 
 L'application sera accessible à l'adresse [http://localhost:8080](http://localhost:8080) dans votre navigateur.
 
@@ -59,7 +57,7 @@ L'application sera accessible à l'adresse [http://localhost:8080](http://localh
 - `handles.js` : Gestionnaire de routes et de logique de l'application.
 - `content/about.json` : Fichier JSON contenant des informations à afficher sur la page "À propos".
 - `app.test.js` : Tests automatisés pour les routes Express de l'application
-- `package.json` :  Fichier de configuration de Node.js qui contient des informations sur le projet, telles que les dépendances, les scripts de démarrage, etc.
+- `package.json` : Fichier de configuration de Node.js qui contient des informations sur le projet, telles que les dépendances, les scripts de démarrage, etc.
 
 ## Contribuer
 
@@ -70,6 +68,3 @@ N'hésitez pas à contribuer en ouvrant des problèmes ou en soumettant des dema
 - [Jonathan VELIN](https://github.com/jonathan971)
 - [Mathias NERIS](https://github.com/M5-ux)
 - [Omar LAHBABI](https://github.com/omar2929)
-
-
-

@@ -7,23 +7,21 @@ import { ThemeSupa } from '@supabase/auth-ui-shared';
 // Configuration de Supabase
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
 );
-
-
 
 export default function Home() {
   const [authenticated, setAuthenticated] = useState(false);
   const router = useRouter();
 
- 
-  
   useEffect(() => {
     // Écouteur pour les changements d'état d'authentification
-    const { data: authListener } = supabase.auth.onAuthStateChange((event, session) => {
-      setAuthenticated(!!session);
-    });
-  
+    const { data: authListener } = supabase.auth.onAuthStateChange(
+      (event, session) => {
+        setAuthenticated(!!session);
+      },
+    );
+
     // Nettoyer l'écouteur lors du démontage du composant
     return () => {
       if (typeof authListener === 'function') {
@@ -32,17 +30,10 @@ export default function Home() {
     };
   }, []);
 
-  
-  
-  
-  
-  
-
-  
   // Fonction pour gérer la redirection
   const handleRedirect = () => {
     if (authenticated) {
-      router.push('/profile');
+      router.push('/articles');
     }
   };
 
