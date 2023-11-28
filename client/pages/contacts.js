@@ -24,7 +24,7 @@ function Contact() {
       <section className="contact-form">
         <h2>Contactez-nous</h2>
         <form onSubmit={handleSubmit}>
-          {/* ...autres champs du formulaire... */}
+          {}
           <button type="submit" disabled={submitted}>
             Submit
           </button>

@@ -5,7 +5,7 @@ import { createClient } from '@supabase/supabase-js';
 import { ThemeSupa } from '@supabase/auth-ui-shared';
 
 // Configuration de Supabase
-const supabase = createClient(
+export const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL,
   process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
 );
