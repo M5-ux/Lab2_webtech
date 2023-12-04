@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  
   content: [
     './app/**/*.{js,ts,jsx,tsx,mdx}',
     './pages/**/*.{js,ts,jsx,tsx,mdx}',
@@ -7,11 +8,19 @@ module.exports = {
     './index/**/*.{js,ts,jsx,tsx,mdx}',
     './articles/**/*.{js,ts,jsx,tsx,mdx}',
 
-    // Or if using `src` directory:
     './src/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        sans: ['Quicksand', 'sans-serif'],
+    },
+    colors: {
+      customBlueGreen: '#509ea5',
+      customBlue: '#5082a5',
+      customLightBlue: '#7fadc8',
+    },
+  },
   },
   plugins: [],
 };

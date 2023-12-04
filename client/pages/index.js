@@ -1,50 +1,32 @@
+import Header from '../components/header';
 import Link from 'next/link';
-import React from 'react';
 
 export default function Home() {
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-blue-100 p-8">
-      <h1 className="text-4xl font-bold text-blue-700 mb-8">
-        Bienvenue sur ma page d&apos;accueil Next.js !
-      </h1>
+    <div className="bg-teal-500 font-sans">
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet" />
+      <section data-aos="zoom-in" className="text-center py-20 bg-customBlueGreen text-white">
+        <h1 className="text-5xl font-bold mb-6">Explorez le Monde avec SoleyEvazyon</h1>
+        <p className="text-xl mb-6">Des voyages inoubliables vous attendent</p>
+        <Link href="/destinations" className="bg-white text-customBlueGreen py-3 px-6 rounded-full text-lg font-semibold hover:bg-gray-100 transition duration-300">Réservez Maintenant</Link>
+      </section>
 
-      <div className="text-center">
-        <div className="space-y-4">
-          <Link href="/about">
-            <button className="bg-blue-500 hover:bg-blue-700 text-white text-lg font-semibold py-2 px-6 rounded-full transition duration-300 ease-in-out transform hover:scale-105">
-              À Propos
-            </button>
-          </Link>
-
-          <Link href="/contacts">
-            <button className="bg-blue-500 hover:bg-blue-700 text-white text-lg font-semibold py-2 px-6 rounded-full transition duration-300 ease-in-out transform hover:scale-105">
-              Contact
-            </button>
-          </Link>
-
-          <Link href="/articles">
-            <button className="bg-blue-500 hover:bg-blue-700 text-white text-lg font-semibold py-2 px-6 rounded-full transition duration-300 ease-in-out transform hover:scale-105">
-              Liste d&apos;articles
-            </button>
-          </Link>
-
-          <Link href="/admin/contacts">
-            <button className="bg-blue-500 hover:bg-blue-700 text-white text-lg font-semibold py-2 px-6 rounded-full transition duration-300 ease-in-out transform hover:scale-105">
-              liste de contacts
-            </button>
-          </Link>
-
-          <Link href="/login">
-            <button className="bg-blue-500 hover:bg-blue-700 text-white text-lg font-semibold py-2 px-6 rounded-full transition duration-300 ease-in-out transform hover:scale-105">
-              login
-            </button>
-          </Link>
+      {/* Section Destinations */}
+      <section className="bg-white py-20 px-6">
+        <div className="container mx-auto">
+          <h2 className="text-4xl font-semibold text-center">Destinations Phares</h2>
+          {/* Contenu Destinations */}
         </div>
+      </section>
 
-        <p className="mt-8 text-gray-600 text-sm">
-          &copy; 2023 Ma Page d&apos;accueil Next.js
-        </p>
-      </div>
+
+      {/* Autres sections de contenu pour la page d'accueil ici */}
+      
+      <footer className="bg-customBlue text-white py-6">
+        <div className="container mx-auto text-center">
+          <p>&copy; {new Date().getFullYear()} SoleyEvazyon. Tous droits réservés.</p>
+        </div>
+      </footer>
     </div>
   );
 }
