@@ -1,6 +1,5 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  
   content: [
     './app/**/*.{js,ts,jsx,tsx,mdx}',
     './pages/**/*.{js,ts,jsx,tsx,mdx}',
@@ -14,13 +13,13 @@ module.exports = {
     extend: {
       fontFamily: {
         sans: ['Quicksand', 'sans-serif'],
+      },
+      colors: {
+        customBlueGreen: '#509ea5',
+        customBlue: '#5082a5',
+        customLightBlue: '#7fadc8',
+      },
     },
-    colors: {
-      customBlueGreen: '#509ea5',
-      customBlue: '#5082a5',
-      customLightBlue: '#7fadc8',
-    },
-  },
   },
   plugins: [],
 };
