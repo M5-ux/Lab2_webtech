@@ -1,5 +1,6 @@
 import Header from '../components/header';
 import Link from 'next/link';
+import DestinationPhare from '../components/DestinationPhare';
 
 export default function Home() {
   return (
@@ -13,7 +14,7 @@ export default function Home() {
         </h1>
         <p className="text-xl mb-6">Des voyages inoubliables vous attendent</p>
         <Link
-          href="/destinations"
+          href="/articles"
           className="bg-white text-customBlueGreen py-3 px-6 rounded-full text-lg font-semibold hover:bg-gray-100 transition duration-300"
         >
           Réservez Maintenant
@@ -26,6 +27,8 @@ export default function Home() {
           <h2 className="text-4xl font-semibold text-center">
             Destinations Phares
           </h2>
+          <DestinationPhare />
+
           {/* Contenu Destinations */}
         </div>
       </section>

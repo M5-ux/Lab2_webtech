@@ -4,19 +4,19 @@ export default function About() {
   const teamMembers = [
     {
       name: 'Jonathan VÉLIN',
-      role: 'Fondateur & CEO',
+      role: 'Co-Fondateur & CEO',
       description: "Passionné par le voyage et l'innovation.",
       imageUrl: '/jonathan.png',
     },
     {
       name: 'Omar LAHBABI',
-      role: 'Directeur Marketing',
+      role: 'Co-Fondateur & Directeur Marketing',
       description: 'Expert en marketing digital et communication.',
-      imageUrl: '/public/omar.png',
+      imageUrl: '/omar.png',
     },
     {
       name: 'Mathias NERIS',
-      role: 'Responsable des Opérations',
+      role: 'Co-Fondateur & Responsable des Opérations',
       description: 'Gère les opérations quotidiennes et la logistique.',
       imageUrl: '/public/mathias.png',
     },
