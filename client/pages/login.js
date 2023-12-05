@@ -3,8 +3,9 @@ import { useRouter } from 'next/router';
 import { Auth } from '@supabase/auth-ui-react';
 import { createClient } from '@supabase/supabase-js';
 import { ThemeSupa } from '@supabase/auth-ui-shared';
+import BoutonDeco from '../components/BoutonDeco'  ; 
 
-// Configuration de Supabase
+
 export const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL,
   process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
@@ -13,29 +14,33 @@ export const supabase = createClient(
 export default function Login() {
   const [authenticated, setAuthenticated] = useState(false);
   const router = useRouter();
-
+  
   useEffect(() => {
-    // Écouteur pour les changements d'état d'authentification
     const { data: authListener } = supabase.auth.onAuthStateChange(
       (event, session) => {
         setAuthenticated(!!session);
+        if (session) {
+          handleRedirect();
+        }
       },
     );
-
-    // Nettoyer l'écouteur lors du démontage du composant
-    return () => {
-      if (typeof authListener === 'function') {
-        authListener();
-      }
-    };
+  
+    return () => authListener?.unsubscribe?.();
   }, []);
-
-  // Fonction pour gérer la redirection
+  
+ 
   const handleRedirect = () => {
     if (authenticated) {
-      router.push('/');
+      router.push('/profile');
     }
   };
+
+  useEffect(() => {
+    if (authenticated) {
+      router.push('/profile');
+    }
+  }, [authenticated]);
+  
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-blue-100 p-8">
@@ -44,12 +49,9 @@ export default function Login() {
         appearance={{ theme: ThemeSupa }}
         providers={['github']}
       />
-      {authenticated && (
-        <button onClick={handleRedirect} className="mt-4">
-          Home
-        </button>
-      )}
-      {}
+      
+      <BoutonDeco />
+
     </div>
   );
 }
