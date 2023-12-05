@@ -61,11 +61,15 @@ export default function DestinationPhare() {
               {' '}
               {/* Centre verticalement et horizontalement les contenus de l'article */}
               <h2 className="text-lg mb-2">{article.title}</h2>
+
+              <Link href={`/articlesDescription/articles/${article.id}`}>
               <img
                 src={article.image}
                 alt={article.title}
                 className="w-40 h-40 object-cover mb-2"
-              />{' '}
+              />
+               </Link>
+              {' '}
               {/* Utilisez object-cover pour maintenir l'aspect ratio de l'image */}
               <p className="text-sm">{article.description}</p>
               <p className="text-sm">{article.price}</p>

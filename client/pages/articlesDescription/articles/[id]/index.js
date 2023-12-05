@@ -1,8 +1,17 @@
 import { supabase } from 'pages/login.js';
 import Link from 'next/link';
+import { useState } from 'react';
+import CommentForm from 'pages/commentForm.js';
 
 
-function listeContacts({ article,comments  }) {
+function listeContacts({ article ,comments  }) {
+
+  const [showCommentForm, setShowCommentForm] = useState(false);
+
+  const handleShowCommentForm = () => {
+    setShowCommentForm(true);
+  };
+
   if (!article && !comments) {
     return <p>chargement...</p>;
   }
@@ -18,6 +27,12 @@ function listeContacts({ article,comments  }) {
           <li key={comment.id}>{comment.content}</li>
         ))}
       </ul>
+
+{/* Bouton pour afficher le formulaire de commentaire */}
+<button onClick={handleShowCommentForm}>Ajouter un commentaire</button>
+
+{/* Afficher le formulaire de commentaire uniquement si showCommentForm est vrai */}
+{showCommentForm && <CommentForm articleId={article.id} click={showCommentForm} />}
 
 
     
