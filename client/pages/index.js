@@ -14,7 +14,7 @@ export default function Home() {
         </h1>
         <p className="text-xl mb-6">Des voyages inoubliables vous attendent</p>
         <Link
-          href="/articles"
+          href="/destinations"
           className="bg-white text-customBlueGreen py-3 px-6 rounded-full text-lg font-semibold hover:bg-gray-100 transition duration-300"
         >
           Réservez Maintenant

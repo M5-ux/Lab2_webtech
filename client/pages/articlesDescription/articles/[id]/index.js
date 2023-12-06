@@ -1,11 +1,8 @@
-import { supabase } from 'pages/login.js';
-import Link from 'next/link';
 import { useState } from 'react';
 import CommentForm from 'pages/commentForm.js';
+import { supabase } from 'pages/login.js';
 
-
-function listeContacts({ article ,comments  }) {
-
+function ListeContacts({ article, comments }) {
   const [showCommentForm, setShowCommentForm] = useState(false);
 
   const handleShowCommentForm = () => {
@@ -13,62 +10,37 @@ function listeContacts({ article ,comments  }) {
   };
 
   if (!article && !comments) {
-    return <p>chargement...</p>;
+    return <p className="text-center">Chargement...</p>;
   }
 
   return (
-   
-    <div>
-      <h1>{article.title}</h1>
-      <p>{article.content}</p>
-      <h2>Comments</h2>
-      <ul>
-        {comments.map((comment) => (
-          <li key={comment.id}>{comment.content}</li>
-        ))}
-      </ul>
+    <div className="container mx-auto p-4">
+      <article className="bg-white shadow-lg rounded-lg overflow-hidden p-6 mb-6">
+        <h1 className="text-3xl font-bold mb-4">{article.title}</h1>
+        <p className="text-gray-700">{article.content}</p>
+      </article>
+      
+      <section>
+        <h2 className="text-2xl font-bold mb-4">Commentaires</h2>
+        <ul className="list-disc pl-5 mb-6">
+          {comments.map((comment) => (
+            <li key={comment.id} className="mb-2">{comment.content}</li>
+          ))}
+        </ul>
 
-{/* Bouton pour afficher le formulaire de commentaire */}
-<button onClick={handleShowCommentForm}>Ajouter un commentaire</button>
+        <button
+          onClick={handleShowCommentForm}
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+        >
+          Ajouter un commentaire
+        </button>
 
-{/* Afficher le formulaire de commentaire uniquement si showCommentForm est vrai */}
-{showCommentForm && <CommentForm articleId={article.id} click={showCommentForm} />}
-
-
-    
+        {showCommentForm && <CommentForm articleId={article.id} />}
+      </section>
     </div>
   );
 }
 
-export async function getServerSideProps(context) {
-  const { params } = context;
-  const { id } = params;
+// getServerSideProps reste inchangé...
 
-  const { data: article, error: articleError } = await supabase
-    .from('articles')
-    .select('*')
-    .eq('id', id)
-    .single();
-
-
-    const { data: comments, error: commentsError } = await supabase
-    .from('comments')
-    .select('*')
-    .eq('id_article', id)
-
-    if (articleError || commentsError) {
-      console.error('Erreur lors de la récupération des données:', articleError || commentsError);
-      return {
-        notFound: true,
-      };
-    }
-
-  return {
-    props: {
-      article,
-      comments,
-    },
-  };
-}
-
-export default listeContacts;
+export default ListeContacts;
