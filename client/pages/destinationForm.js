@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import { supabase } from 'pages/login.js';
 
-function ArticleForm() {
+function DestinationForm() {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [submitted, setSubmitted] = useState(false);
@@ -61,4 +61,4 @@ function ArticleForm() {
   );
 }
 
-export default ArticleForm;
+export default DestinationForm;

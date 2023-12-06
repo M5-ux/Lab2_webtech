@@ -3,7 +3,7 @@ import { createClient } from '@supabase/supabase-js';
 import { supabase } from 'pages/login.js';
 import Link from 'next/link';
 
-export default function DestinationPhare() {
+export default function Destination() {
   const [articles, setArticles] = useState([]);
 
   const [Articles2, setArticles2] = useState([]);
@@ -15,8 +15,7 @@ export default function DestinationPhare() {
         .from('articles')
         .select('*')
         .order('id', { ascending: true })
-        .limit(3); // Limiter à 3 articles aa changer avec les likes peut etre
-
+        
       if (error) {
         console.error('Erreur de récupération des articles', error);
       } else {
@@ -59,7 +58,7 @@ export default function DestinationPhare() {
                 data-aos-delay={`${index * 100}`}
                 className="bg-white rounded-lg shadow overflow-hidden transform transition duration-300 hover:scale-105"
               >
-                <Link href={`/articlesDescription/articles/${article.id}`}>
+                <Link href={`/destinationsDescription/destinations/${article.id}`}>
                  <img
                   src={article.image}
                   alt={article.title}
@@ -76,7 +75,7 @@ export default function DestinationPhare() {
           </div>
 
           <div className="text-center mt-10">
-          <Link href="/add-destinations"
+          <Link href="/destinationForm"
   className="bg-customBlue text-white py-3 px-6 rounded-full text-lg font-semibold hover:bg-gray-100 transition duration-300"
             >
   Ajouter une Destination +

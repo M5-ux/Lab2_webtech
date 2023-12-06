@@ -2,7 +2,7 @@ import { useState } from 'react';
 import CommentForm from 'pages/commentForm.js';
 import { supabase } from 'pages/login.js';
 
-function ListeContacts({ article, comments }) {
+function UniqueDestination({ article, comments }) {
   const [showCommentForm, setShowCommentForm] = useState(false);
 
   const handleShowCommentForm = () => {
@@ -41,6 +41,36 @@ function ListeContacts({ article, comments }) {
   );
 }
 
-// getServerSideProps reste inchangé...
 
-export default ListeContacts;
+export async function getServerSideProps(context) {
+  const { params } = context;
+  const { id } = params;
+
+  const { data: article, error: articleError } = await supabase
+    .from('articles')
+    .select('*')
+    .eq('id', id)
+    .single();
+
+
+    const { data: comments, error: commentsError } = await supabase
+    .from('comments')
+    .select('*')
+    .eq('id_article', id)
+
+    if (articleError || commentsError) {
+      console.error('Erreur lors de la récupération des données:', articleError || commentsError);
+      return {
+        notFound: true,
+      };
+    }
+
+  return {
+    props: {
+      article,
+      comments,
+    },
+  };
+}
+
+export default UniqueDestination;
