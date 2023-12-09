@@ -15,12 +15,15 @@ function UniqueDestination({ article, comments }) {
 
   return (
     <div className="container mx-auto p-4">
-      <article className="bg-white shadow-lg rounded-lg overflow-hidden p-6 mb-6">
-        <h1 className="text-3xl font-bold mb-4">{article.title}</h1>
-        <p className="text-gray-700">{article.content}</p>
+      <article className="shadow-lg rounded-lg overflow-hidden mb-6">
+        <img src={article.image} alt={article.title} className="w-full h-48 object-cover"/>
+        <div className="bg-white bg-opacity-90 p-6">
+          <h1 className="text-3xl font-bold mb-4">{article.title}</h1>
+          <p className="text-gray-700">{article.content}</p>
+        </div>
       </article>
       
-      <section>
+      <section className="bg-white shadow rounded-lg p-6">
         <h2 className="text-2xl font-bold mb-4">Commentaires</h2>
         <ul className="list-disc pl-5 mb-6">
           {comments.map((comment) => (
@@ -30,7 +33,7 @@ function UniqueDestination({ article, comments }) {
 
         <button
           onClick={handleShowCommentForm}
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+          className="bg-customBlue hover:bg-customBlueGreen text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
         >
           Ajouter un commentaire
         </button>

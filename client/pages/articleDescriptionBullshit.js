@@ -39,7 +39,7 @@ export default function useListeArticles() {
       <div className="text-center mt-8">
         <Link href="/add-destinations">
           <a className="bg-blue-500 hover:bg-blue-700 text-white text-lg font-semibold py-2 px-6 rounded-full transition duration-300 ease-in-out transform hover:scale-105">
-            Ajouter un Article +
+            Ajouter une destination +
           </a>
         </Link>
       </div>

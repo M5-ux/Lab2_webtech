@@ -18,7 +18,7 @@ export default function About() {
       name: 'Mathias NERIS',
       role: 'Co-Fondateur & Responsable des Opérations',
       description: 'Gère les opérations quotidiennes et la logistique.',
-      imageUrl: '/public/mathias.png',
+      imageUrl: '/mathias.png',
     },
   ];
 
