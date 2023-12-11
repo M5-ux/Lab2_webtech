@@ -22,7 +22,7 @@ const BoutonDeco = () => {
 
       <button
         onClick={handleLogout}
-        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-10 px-4 rounded"
+        className="bg-customBlue hover:bg-customBlueGreen text-white font-bold py-10 px-4 rounded"
       >
         Déconnexion
       </button>
