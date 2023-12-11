@@ -48,7 +48,7 @@ export default function Header() {
             href="/login"
             className="text-customBlue hover:text-blue-600 transition duration-300"
           >
-            Profile
+            Login
           </Link>
 
          
