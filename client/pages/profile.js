@@ -4,27 +4,32 @@ import Image from 'next/image';
 import 'aos/dist/aos.css';
 import AOS from 'aos';
 import BoutonDeco from '../components/BoutonDeco';
-import { supabase } from './login.js';
+import { supabase } from '../utils/supabase'
 import '../styles/page.module.css';
 
 const ProfilePage = () => {
-  const [profile, setProfile] = useState({ full_name: '', avatar_url: '', email: '' });
+
+  const [username, setUsername] = useState(null)
+  const [website, setWebsite] = useState(null)
+  const [avatar_url, setAvatarUrl] = useState(null)
+  const [email, setEmail] = useState(null)
+  const [fullname, setFullname] = useState(null)
   const [editing, setEditing] = useState(false);
   const router = useRouter();
 
   useEffect(() => {
-    AOS.init({ duration: 1000 });
+    //AOS.init({ duration: 1000 });
 
     supabase.auth.onAuthStateChange((event, session) => {
       if (session) {
-        fetchProfile(session.user.id);
+        getCurrentUser(session.user.id);
       } else {
         router.push('/login');
       }
     });
   }, [router]);
 
-  const fetchProfile = async (userId) => {
+  const getCurrentUser = async (userId) => {
     try {
       const { data: profileData, error } = await supabase
         .from('profiles')
@@ -33,7 +38,15 @@ const ProfilePage = () => {
         .single();
 
       if (error) throw error;
-      setProfile(profileData || {});
+
+      if (data) {
+        setUsername(data.username)
+        setWebsite(data.website)
+        setAvatarUrl(data.avatar_url)
+        setEmail(data.email)
+        setFullname(data.full_name)
+      }
+
     } catch (error) {
       console.error('Erreur lors de la récupération du profil:', error);
     }
@@ -46,6 +59,35 @@ const ProfilePage = () => {
   const handleCancelClick = () => {
     setEditing(false);
   };
+
+
+  async function updatedProfile({ username, website, avatar_url,fullname ,email}) {
+    try {
+      setLoading(true)
+      const user = await getCurrentUser()
+
+      const updates = {
+        id: user.id,
+        username,
+        website,
+        avatar_url,
+        updated_at: new Date(),
+        fullname,
+        email,
+      }
+
+      let { error } = await supabase.from('profiles').upsert(updates)
+
+      if (error) {
+        throw error
+      }
+    } catch (error) {
+      alert(error.message)
+    } finally {
+      setLoading(false)
+    }
+  }
+
 
   //Mathias
   const handleSubmit = async (event) => {

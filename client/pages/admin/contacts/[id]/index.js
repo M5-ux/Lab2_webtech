@@ -1,4 +1,4 @@
-import { supabase } from 'pages/login.js';
+import { supabase } from '../utils/supabase'
 import Link from 'next/link';
 
 

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useSupabaseClient } from '@supabase/auth-helpers-react';
+import { supabase } from '../utils/supabase'
 
 function Contact() {
   const [lastname, setLastName] = useState('');
@@ -7,7 +7,6 @@ function Contact() {
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
   const [submitted, setSubmitted] = useState(false);
-  const supabase = useSupabaseClient();
 
   const handleSubmit = async (e) => {
     e.preventDefault();

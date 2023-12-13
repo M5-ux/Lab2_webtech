@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { createClient } from '@supabase/supabase-js';
-import { supabase } from 'pages/login.js';
+import { supabase } from '/utils/supabase'
 import Link from 'next/link';
 
 export default function Destination() {

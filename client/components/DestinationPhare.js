@@ -1,8 +1,7 @@
 // components/DestinationPhare.js
 
 import React, { useEffect, useState } from 'react';
-import { createClient } from '@supabase/supabase-js';
-import { supabase } from 'pages/login.js';
+import { supabase } from '../utils/supabase'
 
 export default function DestinationPhare() {
   const [articles, setArticles] = useState([]);

@@ -1,12 +1,8 @@
 import React from 'react';
 import { useRouter } from 'next/router';
-import { createClient } from '@supabase/supabase-js';
+import { supabase } from '../utils/supabase'
 
-// Configuration de Supabase
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
-);
+
 
 const BoutonDeco = () => {
   const router = useRouter();

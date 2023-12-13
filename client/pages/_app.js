@@ -6,6 +6,7 @@ import { SessionContextProvider } from '@supabase/auth-helpers-react';
 import { useState, useEffect } from 'react';
 import Layout from '../components/layout';
 
+
 function MyApp({ Component, pageProps }) {
   const [supabaseClient] = useState(() => createPagesBrowserClient());
 

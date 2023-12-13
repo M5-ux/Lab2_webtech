@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import CommentForm from 'pages/commentForm.js';
-import { supabase } from 'pages/login.js';
+import { supabase } from '/utils/supabase'
 
 function UniqueDestination({ article, comments }) {
   const [showCommentForm, setShowCommentForm] = useState(false);

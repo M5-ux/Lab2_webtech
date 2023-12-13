@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { supabase } from 'pages/login.js';
+import { supabase } from '../utils/supabase'
 import Link from 'next/link';
 
 export default function useListeArticles() {

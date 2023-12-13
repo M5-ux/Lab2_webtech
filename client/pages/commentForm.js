@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
-import { supabase } from 'pages/login.js';
+import { supabase } from '../utils/supabase'
 
 function CommentForm({ articleId }) {
   const [content, setContent] = useState('');
