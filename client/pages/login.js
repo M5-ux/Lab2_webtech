@@ -1,35 +1,57 @@
-import React, { useState, useEffect } from 'react';
-import { useRouter } from 'next/router';
-import { Auth } from '@supabase/auth-ui-react';
+import { useState, useEffect } from 'react';
+import { supabase } from '../utils/supabase';
+//import Auth from '../components/Auth'
+import Account from '../components/Account';
 import { ThemeSupa } from '@supabase/auth-ui-shared';
-import BoutonDeco from '../components/BoutonDeco';
-import { supabase } from '../utils/supabase'
+import { Auth } from '@supabase/auth-ui-react';
 
+export default function Home() {
+  const [isLoading, setIsLoading] = useState(true);
+  const [session, setSession] = useState(null);
 
-export default function Login() {
-  const router = useRouter();
-  
   useEffect(() => {
-    const { data: authListener } = supabase.auth.onAuthStateChange(
-      (event, session) => {
+    let mounted = true;
+
+    async function getInitialSession() {
+      const {
+        data: { session },
+      } = await supabase.auth.getSession();
+
+      if (mounted) {
         if (session) {
-          router.push('/profile');
+          setSession(session);
         }
+
+        setIsLoading(false);
+      }
+    }
+
+    getInitialSession();
+
+    const { subscription } = supabase.auth.onAuthStateChange(
+      (_event, session) => {
+        setSession(session);
       },
     );
 
-    return () => authListener?.unsubscribe?.();
-  }, [router]);
+    return () => {
+      mounted = false;
+
+      subscription?.unsubscribe();
+    };
+  }, []);
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-blue-100 p-8">
-      <Auth
-        supabaseClient={supabase}
-        appearance={{ theme: ThemeSupa }}
-        providers={['github']}
-      />
-      
-      <BoutonDeco />
+    <div className="container" style={{ padding: '50px 0 100px 0' }}>
+      {!session ? (
+        <Auth
+          supabaseClient={supabase}
+          appearance={{ theme: ThemeSupa }}
+          providers={['github']}
+        />
+      ) : (
+        <Account key={session.user.id} session={session} />
+      )}
     </div>
   );
 }

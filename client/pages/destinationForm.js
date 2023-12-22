@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
-import { supabase } from '../utils/supabase'
+import { supabase } from '../utils/supabase';
 
 function DestinationForm() {
   const [title, setTitle] = useState('');
@@ -11,9 +11,7 @@ function DestinationForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (title && content && !submitted) {
-      await supabase
-        .from('articles')
-        .insert([{ title, content }]);
+      await supabase.from('articles').insert([{ title, content }]);
       setSubmitted(true);
       router.push('/destinations');
     }

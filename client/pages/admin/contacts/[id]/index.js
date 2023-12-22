@@ -1,14 +1,12 @@
-import { supabase } from '../utils/supabase'
+import { supabase } from '../../../../utils/supabase';
 import Link from 'next/link';
 
-
-function listeContacts({ article,comments  }) {
+function listeContacts({ article, comments }) {
   if (!article && !comments) {
     return <p>chargement...</p>;
   }
 
   return (
-   
     <div>
       <h1>{article.title}</h1>
       <p>{article.content}</p>
@@ -18,9 +16,6 @@ function listeContacts({ article,comments  }) {
           <li key={comment.id}>{comment.content}</li>
         ))}
       </ul>
-
-
-    
     </div>
   );
 }
@@ -35,18 +30,20 @@ export async function getServerSideProps(context) {
     .eq('id', id)
     .single();
 
-
-    const { data: comments, error: commentsError } = await supabase
+  const { data: comments, error: commentsError } = await supabase
     .from('comments')
     .select('*')
-    .eq('id_article', id)
+    .eq('id_article', id);
 
-    if (articleError || commentsError) {
-      console.error('Erreur lors de la récupération des données:', articleError || commentsError);
-      return {
-        notFound: true,
-      };
-    }
+  if (articleError || commentsError) {
+    console.error(
+      'Erreur lors de la récupération des données:',
+      articleError || commentsError,
+    );
+    return {
+      notFound: true,
+    };
+  }
 
   return {
     props: {

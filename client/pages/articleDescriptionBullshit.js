@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { supabase } from '../utils/supabase'
+import { supabase } from '../utils/supabase';
 import Link from 'next/link';
 
 export default function useListeArticles() {
@@ -7,7 +7,9 @@ export default function useListeArticles() {
 
   useEffect(() => {
     async function loadData() {
-      const { data } = await supabase.from('articles').select('title, content, comments(*)');
+      const { data } = await supabase
+        .from('articles')
+        .select('title, content, comments(*)');
       setData(data || []);
     }
 
@@ -26,7 +28,9 @@ export default function useListeArticles() {
               <h4 className="font-bold">Commentaires:</h4>
               <ul className="list-disc list-inside">
                 {article.comments.map((comment) => (
-                  <li key={comment.id} className="text-gray-600">{comment.content}</li>
+                  <li key={comment.id} className="text-gray-600">
+                    {comment.content}
+                  </li>
                 ))}
               </ul>
             </li>

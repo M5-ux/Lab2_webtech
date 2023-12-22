@@ -1,7 +1,6 @@
-// components/DestinationPhare.js
-
 import React, { useEffect, useState } from 'react';
-import { supabase } from '../utils/supabase'
+import { supabase } from '../utils/supabase';
+import Image from 'next/image';
 
 export default function DestinationPhare() {
   const [articles, setArticles] = useState([]);
@@ -37,7 +36,7 @@ export default function DestinationPhare() {
             {' '}
             {/* Centre verticalement et horizontalement les contenus de l'article */}
             <h2 className="text-lg mb-2">{article.title}</h2>
-            <img
+            <Image
               src={article.image}
               alt={article.title}
               className="w-40 h-40 object-cover mb-2"

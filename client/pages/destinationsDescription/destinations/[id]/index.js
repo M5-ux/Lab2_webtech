@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import CommentForm from 'pages/commentForm.js';
-import { supabase } from '/utils/supabase'
+import { supabase } from '/utils/supabase';
+import Image from 'next/image';
 
 function UniqueDestination({ article, comments }) {
   const [showCommentForm, setShowCommentForm] = useState(false);
@@ -16,18 +17,24 @@ function UniqueDestination({ article, comments }) {
   return (
     <div className="container mx-auto p-4">
       <article className="shadow-lg rounded-lg overflow-hidden mb-6">
-        <img src={article.image} alt={article.title} className="w-full h-48 object-cover"/>
+        <Image
+          src={article.image}
+          alt={article.title}
+          className="w-full h-48 object-cover"
+        />
         <div className="bg-white bg-opacity-90 p-6">
           <h1 className="text-3xl font-bold mb-4">{article.title}</h1>
           <p className="text-gray-700">{article.content}</p>
         </div>
       </article>
-      
+
       <section className="bg-white shadow rounded-lg p-6">
         <h2 className="text-2xl font-bold mb-4">Commentaires</h2>
         <ul className="list-disc pl-5 mb-6">
           {comments.map((comment) => (
-            <li key={comment.id} className="mb-2">{comment.content}</li>
+            <li key={comment.id} className="mb-2">
+              {comment.content}
+            </li>
           ))}
         </ul>
 
@@ -44,7 +51,6 @@ function UniqueDestination({ article, comments }) {
   );
 }
 
-
 export async function getServerSideProps(context) {
   const { params } = context;
   const { id } = params;
@@ -55,18 +61,20 @@ export async function getServerSideProps(context) {
     .eq('id', id)
     .single();
 
-
-    const { data: comments, error: commentsError } = await supabase
+  const { data: comments, error: commentsError } = await supabase
     .from('comments')
     .select('*')
-    .eq('id_article', id)
+    .eq('id_article', id);
 
-    if (articleError || commentsError) {
-      console.error('Erreur lors de la récupération des données:', articleError || commentsError);
-      return {
-        notFound: true,
-      };
-    }
+  if (articleError || commentsError) {
+    console.error(
+      'Erreur lors de la récupération des données:',
+      articleError || commentsError,
+    );
+    return {
+      notFound: true,
+    };
+  }
 
   return {
     props: {

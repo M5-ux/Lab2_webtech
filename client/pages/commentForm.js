@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
-import { supabase } from '../utils/supabase'
+import { supabase } from '../utils/supabase';
 
 function CommentForm({ articleId }) {
   const [content, setContent] = useState('');
@@ -14,7 +14,7 @@ function CommentForm({ articleId }) {
       const { data, error } = await supabase
         .from('comments')
         .insert([{ id_article: articleId, content }]);
-      
+
       if (!error) {
         setSubmitted(true);
         setFormVisible(false);
@@ -31,7 +31,10 @@ function CommentForm({ articleId }) {
         <h2 className="text-2xl font-bold mb-4">Ajouter un Commentaire</h2>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="mb-4">
-            <label htmlFor="content" className="block text-gray-700 font-bold mb-2">
+            <label
+              htmlFor="content"
+              className="block text-gray-700 font-bold mb-2"
+            >
               Commentaire :
             </label>
             <textarea
