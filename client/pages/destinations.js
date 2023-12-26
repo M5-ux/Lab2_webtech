@@ -29,12 +29,16 @@ export default function Destination() {
   useEffect(() => {
     const lowercasedFilter = recherche.toLowerCase();
     const filteredData = articles.filter(
-      (article) =>
-        article.title.toLowerCase().includes(lowercasedFilter) ||
-        article.description.toLowerCase().includes(lowercasedFilter),
+      (articles) =>
+        articles.title.toLowerCase().includes(lowercasedFilter) ||
+        articles.description.toLowerCase().includes(lowercasedFilter),
     );
     setArticles2(filteredData);
   }, [recherche, articles]);
+
+
+  
+
 
   return (
     <>
@@ -44,28 +48,36 @@ export default function Destination() {
           {/* ... */}
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {Articles2.map((article, index) => (
+            {Articles2.map((articles, index) => (
+
+              
               <div
-                key={article.id}
+                
+                key={articles.id}
                 data-aos="fade-up"
                 data-aos-delay={`${index * 100}`}
                 className="bg-white rounded-lg shadow overflow-hidden transform transition duration-300 hover:scale-105 flex flex-col"
+                
               >
                 <Link
-                  href={`/destinationsDescription/destinations/${article.id}`}
+                  href={`/destinationsDescription/destinations/${articles.id}`}
                 >
                   <Image
-                    src={article.image}
-                    alt={article.title}
-                    className="w-full h-48 object-cover"
+                    
+                    src={articles.image}
+                    alt={articles.title}
+                    width={300}
+                    height={300}
+                 
                   />
+
                 </Link>
                 <div className="p-6 flex flex-col justify-between flex-grow">
                   <h2 className="text-xl font-semibold mb-2">
-                    {article.title}
+                    {articles.titles}
                   </h2>
-                  <p className="text-gray-600 mb-4">{article.description}</p>
-                  <p className="text-gray-600">Prix : {article.price}</p>
+                  <p className="text-gray-600 mb-4">{articles.description}</p>
+                  <p className="text-gray-600">Prix : {articles.price}</p>
                 </div>
               </div>
             ))}

@@ -39,6 +39,9 @@ export default function DestinationPhare() {
             <Image
               src={article.image}
               alt={article.title}
+              width={300}
+              height={300}
+
               className="w-40 h-40 object-cover mb-2"
             />{' '}
             {/* Utilisez object-cover pour maintenir l'aspect ratio de l'image */}
