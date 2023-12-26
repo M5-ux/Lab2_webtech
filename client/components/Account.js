@@ -45,6 +45,10 @@ export default function Account({ session }) {
     }
   }, [session]);
 
+  const toggleEditing = () => {
+    setEditing(!editing); 
+  };
+
   async function updateProfile(profileData) {
     try {
       setLoading(true);

@@ -67,7 +67,7 @@ export default function Header() {
             </Link>
           ) : (
             <Link
-              href="/logintest"
+              href="/login"
               className="text-customBlue hover:text-blue-600 transition duration-300"
             >
               Inscription/Connexion

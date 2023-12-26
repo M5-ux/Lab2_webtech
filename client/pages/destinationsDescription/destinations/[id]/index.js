@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import CommentForm from 'pages/commentForm.js';
+import CommentForm from '../../../commentForm.js';
 import { supabase } from '/utils/supabase';
 import Image from 'next/image';
 
@@ -21,6 +21,8 @@ function UniqueDestination({ article, comments }) {
           src={article.image}
           alt={article.title}
           className="w-full h-48 object-cover"
+          width={300}
+          height={300}
         />
         <div className="bg-white bg-opacity-90 p-6">
           <h1 className="text-3xl font-bold mb-4">{article.title}</h1>

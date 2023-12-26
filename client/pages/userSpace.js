@@ -60,6 +60,8 @@ export default function userSpace({ session }) {
                     src={article.image}
                     alt={article.title}
                     className="w-full h-48 object-cover"
+                    width={300}
+                    height={300}
                   />
                 </Link>
                 <div className="p-6 flex flex-col justify-between flex-grow">

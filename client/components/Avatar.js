@@ -11,7 +11,7 @@ export default function Avatar({ uid, url, size, onUpload }) {
     async function downloadImage(path) {
       try {
         if (path.startsWith('https://')) {
-          setAvatarUrl(path); // S'il s'agit d'une URL externe, utilisez-la directement
+          setAvatarUrl(path); 
         } else {
           const { data, error } = await supabase.storage
             .from('avatars')
@@ -64,7 +64,8 @@ export default function Avatar({ uid, url, size, onUpload }) {
           src={avatarUrl}
           alt="Avatar"
           className="rounded-full"
-          style={{ height: size, width: size }}
+          width={size}
+          height={size}
         />
       ) : (
         <div
