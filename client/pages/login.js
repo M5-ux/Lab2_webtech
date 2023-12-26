@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { supabase } from '../utils/supabase';
-//import Auth from '../components/Auth'
 import Account from '../components/Account';
 import { ThemeSupa } from '@supabase/auth-ui-shared';
 import { Auth } from '@supabase/auth-ui-react';
@@ -37,7 +36,7 @@ export default function Home() {
     return () => {
       mounted = false;
 
-      subscription?.unsubscribe();
+      subscription?.umountednsubscribe();
     };
   }, []);
 
