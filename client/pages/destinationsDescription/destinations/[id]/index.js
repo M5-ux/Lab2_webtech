@@ -2,6 +2,7 @@ import { useState } from 'react';
 import CommentForm from '../../../commentForm.js';
 import { supabase } from '/utils/supabase';
 import Image from 'next/image';
+import Weather from '../../../../components/Weather.js';
 
 function UniqueDestination({ article, comments }) {
   const [showCommentForm, setShowCommentForm] = useState(false);
@@ -29,6 +30,10 @@ function UniqueDestination({ article, comments }) {
           <p className="text-gray-700">{article.content}</p>
         </div>
       </article>
+
+      <section className="bg-white shadow rounded-lg p-6 my-4">
+        <Weather city={article.title} />
+      </section>
 
       <section className="bg-white shadow rounded-lg p-6">
         <h2 className="text-2xl font-bold mb-4">Commentaires</h2>
@@ -91,7 +96,7 @@ export async function getServerSideProps(context) {
       profiles:user_id (username, avatar_url)
     `,
     )
-    .eq('id_article', id); // Assurez-vous que 'article_id' est le bon nom de colonne
+    .eq('id_article', id); 
 
   if (articleError || commentsError) {
     console.error(
