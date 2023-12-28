@@ -3,7 +3,7 @@ import { supabase } from '../utils/supabase';
 import Link from 'next/link';
 import Image from 'next/image';
 
-export default function userSpace({ session }) {
+export default function UserSpace({ session }) {
   const [articles, setArticles] = useState([]);
 
   const [Articles2, setArticles2] = useState([]);
@@ -11,12 +11,11 @@ export default function userSpace({ session }) {
 
   useEffect(() => {
     async function chargerArticles() {
-
       const user = session.user;
       const { data, error } = await supabase
         .from('articles')
         .select('*')
-        .eq('profile_id', user.id)
+        .eq('profile_id', user.id);
 
       if (error) {
         console.error('Erreur de récupération des articles', error);
@@ -26,7 +25,7 @@ export default function userSpace({ session }) {
     }
 
     chargerArticles();
-  }, []);
+  }, [session.user]);
 
   useEffect(() => {
     const lowercasedFilter = recherche.toLowerCase();

@@ -1,10 +1,12 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { supabase } from '../utils/supabase';
 
 export default function Header() {
   const [session, setSession] = useState(null);
+  const [showDropdown, setShowDropdown] = useState(false);
+  const dropdownRef = useRef(null);
 
   useEffect(() => {
     const sessionListener = supabase.auth.onAuthStateChange(
@@ -16,10 +18,26 @@ export default function Header() {
     // Obtenir la session actuelle
     setSession(supabase.auth.session);
 
+    function handleClickOutside(event) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setShowDropdown(false);
+      }
+    }
+
+    document.addEventListener('mousedown', handleClickOutside);
     return () => {
       sessionListener.data?.unsubscribe;
+      document.removeEventListener('mousedown', handleClickOutside);
     };
-  }, []);
+  }, [dropdownRef]);
+
+  const toggleDropdown = () => {
+    setShowDropdown(!showDropdown);
+  };
+
+  const closeDropdown = () => {
+    setShowDropdown(false);
+  };
 
   return (
     <header className="bg-white shadow-sm py-4">
@@ -59,12 +77,35 @@ export default function Header() {
           </Link>
 
           {session ? (
-            <Link
-              href="/login"
-              className="text-customBlue hover:text-blue-600 transition duration-300"
-            >
-              Mon profil
-            </Link>
+            <div className="relative">
+              <button
+                onClick={toggleDropdown}
+                className="text-customBlue hover:text-blue-600 transition duration-300"
+              >
+                Mon profil
+              </button>
+              {showDropdown && (
+                <div
+                  ref={dropdownRef}
+                  className="absolute right-0 mt-2 py-2 w-48 bg-white rounded-md shadow-xl z-20"
+                >
+                  <Link
+                    href="/login"
+                    className="block px-4 py-2 text-center text-gray-700 hover:bg-customBlueGreen hover:text-white"
+                    onClick={closeDropdown}
+                  >
+                    Voir profil
+                  </Link>
+                  <Link
+                    href="/UserPosts"
+                    className="block px-4 py-2 text-center text-gray-700 hover:bg-customBlueGreen hover:text-white"
+                    onClick={closeDropdown}
+                  >
+                    Mes posts et commentaires
+                  </Link>
+                </div>
+              )}
+            </div>
           ) : (
             <Link
               href="/login"

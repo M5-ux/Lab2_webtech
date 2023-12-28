@@ -11,7 +11,7 @@ export default function Avatar({ uid, url, size, onUpload }) {
     async function downloadImage(path) {
       try {
         if (path.startsWith('https://')) {
-          setAvatarUrl(path); 
+          setAvatarUrl(path);
         } else {
           const { data, error } = await supabase.storage
             .from('avatars')

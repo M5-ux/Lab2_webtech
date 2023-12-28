@@ -11,13 +11,12 @@ function DestinationForm({ session }) {
   const [submitted, setSubmitted] = useState(false);
   const router = useRouter();
 
-
-
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (title && content && description && countries && !submitted) {
-      await supabase.from('articles').insert([{ title, description, countries, content, userId}]);
+      await supabase
+        .from('articles')
+        .insert([{ title, description, countries, content, userId }]);
       setSubmitted(true);
       router.push('/destinations');
     }
