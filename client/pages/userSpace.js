@@ -1,31 +1,44 @@
-import { useEffect, useState } from 'react';
-import AOS from 'aos';
-import 'aos/dist/aos.css';
+import React, { useEffect, useState } from 'react';
+import { supabase } from '../utils/supabase';
+import Link from 'next/link';
 import Image from 'next/image';
-// import { supabase } from '../utils/supabaseClient';
 
-export default function Destinations() {
-  const [destinations, setDestinations] = useState([]);
+export default function UserSpace({ session }) {
+  const [articles, setArticles] = useState([]);
+
+  const [Articles2, setArticles2] = useState([]);
+  const [recherche, setRecherche] = useState('');
 
   useEffect(() => {
-    AOS.init();
-    async function loadDestinations() {
-      // Recuperere les donnnées ici
+    async function chargerArticles() {
+      const user = session.user;
+      const { data, error } = await supabase
+        .from('articles')
+        .select('*')
+        .eq('profile_id', user.id);
+
+      if (error) {
+        console.error('Erreur de récupération des articles', error);
+      } else {
+        setArticles(data);
+      }
     }
-    loadDestinations();
-  }, []);
+
+    chargerArticles();
+  }, [session.user]);
 
   useEffect(() => {
     const lowercasedFilter = recherche.toLowerCase();
     const filteredData = articles.filter(
-      (articles) =>
-        articles.title.toLowerCase().includes(lowercasedFilter) ||
-        articles.description.toLowerCase().includes(lowercasedFilter),
+      (article) =>
+        article.title.toLowerCase().includes(lowercasedFilter) ||
+        article.description.toLowerCase().includes(lowercasedFilter),
     );
     setArticles2(filteredData);
   }, [recherche, articles]);
 
   return (
+    <>
       <div className="bg-gray-100 py-10">
         <div className="container mx-auto px-4">
           {/* Barre de recherche */}
@@ -35,21 +48,20 @@ export default function Destinations() {
             {Articles2.map((article, index) => (
               <div
                 key={article.id}
+                data-aos="fade-up"
+                data-aos-delay={`${index * 100}`}
                 className="bg-white rounded-lg shadow overflow-hidden transform transition duration-300 hover:scale-105 flex flex-col"
               >
                 <Link
                   href={`/destinationsDescription/destinations/${article.id}`}
                 >
-                  <div className="h-48 w-full overflow-hidden">
-                    <Image
-                      src={article.image}
-                      alt={article.title}
-                      width={300}
-                      height={300}
-                      layout="responsive"
-                      objectFit="cover"
-                    />
-                  </div>
+                  <Image
+                    src={article.image}
+                    alt={article.title}
+                    className="w-full h-48 object-cover"
+                    width={300}
+                    height={300}
+                  />
                 </Link>
                 <div className="p-6 flex flex-col justify-between flex-grow">
                   <h2 className="text-xl font-semibold mb-2">
@@ -57,19 +69,6 @@ export default function Destinations() {
                   </h2>
                   <p className="text-gray-600 mb-4">{article.description}</p>
                   <p className="text-gray-600">Prix : {article.price}</p>
-
-                  <div className="flex items-center justify-center mt-4">
-                    {article.profiles.avatar_url && (
-                      <img
-                        src={article.profiles.avatar_url}
-                        alt={article.profiles.username}
-                        className="w-10 h-10 rounded-full object-cover mr-2"
-                      />
-                    )}
-                    <span className="text-gray-700">
-                      Ecrit par {article.profiles.username}
-                    </span>
-                  </div>
                 </div>
               </div>
             ))}
@@ -84,6 +83,7 @@ export default function Destinations() {
             </Link>
           </div>
         </div>
-    </div>
+      </div>
+    </>
   );
 }
