@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { supabase } from '../utils/supabase';
+import { useRouter } from 'next/router';
 
 function Contact() {
   const [lastname, setLastName] = useState('');
@@ -7,14 +8,16 @@ function Contact() {
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
   const [submitted, setSubmitted] = useState(false);
+  const router = useRouter();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (firstname && lastname && email && message && !submitted) {
       const { data } = await supabase
         .from('contacts')
-        .insert([{ firstname, lastname, email, message }]);
+        .insert([{ prenom : firstname, nom : lastname, email : email, message : message }]);
       setSubmitted(true);
+      router.push('/');
     }
   };
 
