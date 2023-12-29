@@ -1,11 +1,15 @@
+/* eslint-disable @next/next/no-img-element */
 import React, { useState, useEffect } from 'react';
 import CommentForm from '../../../commentForm.js';
 import { supabase } from '/utils/supabase';
 import Image from 'next/image';
 import Weather from '../../../../components/Weather.js';
+import { useTheme } from '../../../../context/ThemeContext.js';
 
 function UniqueDestination({ article, comments }) {
   const [showCommentForm, setShowCommentForm] = useState(false);
+  const { isDarkMode } = useTheme();
+  const textColor = isDarkMode ? 'text-white' : 'text-gray-700';
   const [session, setSession] = useState(supabase.auth.session);
 
   useEffect(() => {
@@ -27,15 +31,27 @@ function UniqueDestination({ article, comments }) {
   };
 
   if (!article && !comments) {
-    return <p className="text-center">Chargement...</p>;
+    return (
+      <p
+        className={
+          isDarkMode ? 'text-center text-white' : 'text-center text-gray-800'
+        }
+      >
+        Chargement...
+      </p>
+    );
   }
 
   return (
-    <div className="container mx-auto p-4">
+    <div
+      className={`container mx-auto p-4 ${
+        isDarkMode ? 'bg-dark-background' : 'bg-white'
+      }`}
+    >
       {/* Section Destination*/}
       <article
         data-aos="fade-up"
-        className="shadow-lg rounded-lg overflow-hidden mb-6"
+        className={`shadow-lg rounded-lg overflow-hidden mb-6 bg-white}`}
       >
         <Image
           src={article.image}
@@ -44,28 +60,41 @@ function UniqueDestination({ article, comments }) {
           width={300}
           height={300}
         />
-        <div className="bg-white bg-opacity-90 p-6">
-          <h1 className="text-3xl font-bold mb-4">{article.title}</h1>
-          <p className="text-gray-700">{article.content}</p>
+        <div
+          className={`p-6 ${isDarkMode ? 'bg-dark-background' : 'bg-white'}`}
+        >
+          <h1 className={`text-3xl font-bold mb-4 ${textColor}`}>
+            {article.title}
+          </h1>
+          <p className={textColor}>{article.content}</p>
         </div>
       </article>
 
       {/* Section Méteo */}
       <section
         data-aos="fade-left"
-        className="bg-white shadow rounded-lg p-6 my-4"
+        className={`shadow rounded-lg p-6 my-4 ${
+          isDarkMode ? 'bg-dark-background' : 'bg-white'
+        }`}
       >
         <Weather city={article.title} />
       </section>
 
       {/* Section Commentaire */}
-      <section data-aos="fade-right" className="bg-white shadow rounded-lg p-6">
-        <h2 className="text-2xl font-bold mb-4">Commentaires</h2>
+      <section
+        data-aos="fade-right"
+        className={`shadow rounded-lg p-6 ${
+          isDarkMode
+            ? 'bg-dark-background text-white'
+            : 'bg-white text-gray-700'
+        }`}
+      >
+        <h2 className={`text-2xl font-bold mb-4 ${textColor}`}>Commentaires</h2>
         <ul className="list-disc pl-5 mb-6">
           {comments &&
             Array.isArray(comments) &&
             comments.map((comment) => (
-              <li key={comment.id} className="mb-4 flex items-start space-x-4">
+              <li key={comment.id} className="mb-4 flex items-start space-x-4 ">
                 {comment.profiles && comment.profiles.avatar_url ? (
                   <img
                     src={comment.profiles.avatar_url}
@@ -81,7 +110,7 @@ function UniqueDestination({ article, comments }) {
                   {comment.profiles ? (
                     <p className="font-semibold">{comment.profiles.username}</p>
                   ) : (
-                    <p className="font-semibold">Utilisateur anonyme</p>
+                    <p className="font-semibold ">Utilisateur anonyme</p>
                   )}
                   <p>{comment.content}</p>
                 </div>

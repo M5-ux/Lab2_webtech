@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { supabase } from '../utils/supabase';
 import Link from 'next/link';
 import Image from 'next/image';
+import { useTheme } from '../context/ThemeContext';
+import SearchBar from '../components/SearchBar';
 
 export default function Destination() {
   const [articles, setArticles] = useState([]);
@@ -23,6 +25,8 @@ export default function Destination() {
       sessionListener.data?.unsubscribe;
     };
   }, []);
+
+  const { isDarkMode } = useTheme(); // DarkMode
 
   useEffect(() => {
     async function chargerArticles() {
@@ -51,23 +55,50 @@ export default function Destination() {
     setArticles2(filteredData);
   }, [recherche, articles]);
 
+  const handleSearch = async (searchTerm) => {
+    try {
+      const response = await fetch(
+        `/api/search?query=${encodeURIComponent(searchTerm)}`,
+      );
+
+      if (!response.ok) {
+        throw new Error(`Erreur: ${response.statusText}`);
+      }
+
+      const result = await response.json();
+
+      setArticles(result);
+    } catch (error) {
+      console.error('Erreur lors de l appel de l API de recherche:', error);
+    }
+  };
+
   return (
     <>
-      <div className="bg-gray-100 py-10">
+      <div
+        className={
+          isDarkMode
+            ? 'bg-dark-background text-dark-text py-10'
+            : 'bg-gray-100 text-gray-800 py-10'
+        }
+      >
         <div className="container mx-auto px-4">
-          {/* Barre de recherche */}
-          {/* ... */}
+          <SearchBar onSearch={handleSearch} />
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {Articles2.map((article, index) => (
               <div
                 key={article.id}
-                className="bg-white rounded-lg shadow overflow-hidden transform transition duration-300 hover:scale-105 flex flex-col"
+                className={`rounded-lg shadow overflow-hidden transform transition duration-300 hover:scale-105 flex flex-col ${
+                  isDarkMode
+                    ? 'bg-dark-background border border-gray-700'
+                    : 'bg-white'
+                }`}
               >
                 <Link
                   href={`/destinationsDescription/destinations/${article.id}`}
                 >
-                  <div className="h-48 w-full overflow-hidden">
+                  <div className="h-48 w-full overflow-hidden cursor-pointer">
                     <Image
                       src={article.image}
                       alt={article.title}
@@ -79,11 +110,23 @@ export default function Destination() {
                   </div>
                 </Link>
                 <div className="p-6 flex flex-col justify-between flex-grow">
-                  <h2 className="text-xl font-semibold mb-2">
+                  <h2
+                    className={`text-xl font-semibold mb-2 ${
+                      isDarkMode ? 'text-white' : 'text-gray-800'
+                    }`}
+                  >
                     {article.title}
                   </h2>
-                  <p className="text-gray-600 mb-4">{article.description}</p>
-                  <p className="text-gray-600">Prix : {article.price}</p>
+                  <p
+                    className={`mb-4 ${
+                      isDarkMode ? 'text-white' : 'text-gray-600'
+                    }`}
+                  >
+                    {article.description}
+                  </p>
+                  <p className={isDarkMode ? 'text-white' : 'text-gray-600'}>
+                    Prix : {article.price}
+                  </p>
 
                   <div className="flex items-center justify-center mt-4">
                     {article.profiles.avatar_url && (
@@ -93,8 +136,10 @@ export default function Destination() {
                         className="w-10 h-10 rounded-full object-cover mr-2"
                       />
                     )}
-                    <span className="text-gray-700">
-                      Ecrit par {article.profiles.username}
+                    <span
+                      className={isDarkMode ? 'text-white' : 'text-gray-700'}
+                    >
+                      Écrit par {article.profiles.username}
                     </span>
                   </div>
                 </div>
