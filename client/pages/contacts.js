@@ -15,7 +15,9 @@ function Contact() {
     if (firstname && lastname && email && message && !submitted) {
       const { data } = await supabase
         .from('contacts')
-        .insert([{ prenom : firstname, nom : lastname, email : email, message : message }]);
+        .insert([
+          { prenom: firstname, nom: lastname, email: email, message: message },
+        ]);
       setSubmitted(true);
       router.push('/');
     }
