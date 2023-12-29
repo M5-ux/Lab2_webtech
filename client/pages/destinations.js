@@ -125,7 +125,7 @@ export default function Destination() {
                     {article.description}
                   </p>
                   <p className={isDarkMode ? 'text-white' : 'text-gray-600'}>
-                    Prix : {article.price}
+                    Prix : {article.price} €
                   </p>
 
                   <div className="flex items-center justify-center mt-4">
