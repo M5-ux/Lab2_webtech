@@ -9,13 +9,28 @@ export default function Destination() {
 
   const [Articles2, setArticles2] = useState([]);
   const [recherche, setRecherche] = useState('');
+  const [session, setSession] = useState(supabase.auth.session);
+
+  useEffect(() => {
+    setSession(supabase.auth.session);
+
+    const sessionListener = supabase.auth.onAuthStateChange(
+      (_event, session) => {
+        setSession(session);
+      },
+    );
+
+    return () => {
+      sessionListener.data?.unsubscribe;
+    };
+  }, []);
 
   useEffect(() => {
     async function chargerArticles() {
       const { data, error } = await supabase
         .from('articles')
         .select('*,profiles:profile_id (username, avatar_url)')
-        .order('id', { ascending: true });
+        .order('created_at', { ascending: true });
 
       if (error) {
         console.error('Erreur de récupération des articles', error);
@@ -88,14 +103,18 @@ export default function Destination() {
             ))}
           </div>
 
-          <div className="text-center mt-10">
-            <Link
-              href="/destinationForm"
-              className="bg-customBlue hover:bg-customBlueGreen text-white py-3 px-6 rounded-full text-lg font-semibold  transition duration-300"
-            >
-              Ajouter une destination
-            </Link>
-          </div>
+          {session ? (
+            <div className="text-center mt-10">
+              <Link
+                href="/destinationForm"
+                className="bg-customBlue hover:bg-customBlueGreen text-white py-3 px-6 rounded-full text-lg font-semibold  transition duration-300"
+              >
+                Ajouter une destination
+              </Link>
+            </div>
+          ) : (
+            <div></div>
+          )}
         </div>
       </div>
     </>

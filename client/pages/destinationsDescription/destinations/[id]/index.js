@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import CommentForm from '../../../commentForm.js';
 import { supabase } from '/utils/supabase';
 import Image from 'next/image';
@@ -8,6 +8,21 @@ import Link from 'next/link';
 
 function UniqueDestination({ article, comments }) {
   const [showCommentForm, setShowCommentForm] = useState(false);
+  const [session, setSession] = useState(supabase.auth.session);
+
+  useEffect(() => {
+    setSession(supabase.auth.session);
+
+    const sessionListener = supabase.auth.onAuthStateChange(
+      (_event, session) => {
+        setSession(session);
+      },
+    );
+
+    return () => {
+      sessionListener.data?.unsubscribe;
+    };
+  }, []);
 
   const handleShowCommentForm = () => {
     setShowCommentForm(true);
@@ -76,12 +91,16 @@ function UniqueDestination({ article, comments }) {
             ))}
         </ul>
 
-        <button
-          onClick={handleShowCommentForm}
-          className="bg-customBlue hover:bg-customBlueGreen text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-        >
-          Ajouter un commentaire
-        </button>
+        {session ? (
+          <button
+            onClick={handleShowCommentForm}
+            className="bg-customBlue hover:bg-customBlueGreen text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+          >
+            Ajouter un commentaire
+          </button>
+        ) : (
+          <div></div>
+        )}
 
         {showCommentForm && <CommentForm articleId={article.id} />}
       </section>

@@ -31,7 +31,7 @@ function CommentForm({ articleId }) {
           { id_article: articleId, content: content, user_id: session.user.id },
         ]);
       setSubmitted(true);
-      //router.push('/destinations/:articleId');
+      router.push(`/destinations`);
     }
   };
 

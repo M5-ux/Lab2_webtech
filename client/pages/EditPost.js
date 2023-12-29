@@ -42,7 +42,7 @@ export default function EditPost() {
       console.error('Erreur lors de la mise à jour du post:', error);
     } else {
       console.log('Post mis à jour avec succès:', data);
-      router.push('/userPosts');
+      router.push('/UserPosts');
     }
   }
 
