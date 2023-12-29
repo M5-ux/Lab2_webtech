@@ -3,8 +3,8 @@ import React, { useState, useEffect } from 'react';
 import CommentForm from '../../../commentForm.js';
 import { supabase } from '/utils/supabase';
 import Image from 'next/image';
-import Weather from '../../../../components/Weather.js';
-import { useTheme } from '../../../../context/ThemeContext.js';
+import Weather from '../../../../components/weather.js';
+import { useTheme } from '../../../../context/themeContext.js';
 
 function UniqueDestination({ article, comments }) {
   const [showCommentForm, setShowCommentForm] = useState(false);

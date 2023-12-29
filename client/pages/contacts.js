@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { supabase } from '../utils/supabase';
 import { useRouter } from 'next/router';
-import { useTheme } from '../context/ThemeContext';
+import { useTheme } from '../context/themeContext';
 
 function Contact() {
   const [lastname, setLastName] = useState('');

@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { supabase } from '../utils/supabase';
 import Link from 'next/link';
 import Image from 'next/image';
-import { useTheme } from '../context/ThemeContext';
-import SearchBar from '../components/SearchBar';
+import { useTheme } from '../context/themeContext';
+import SearchBar from '../components/searchBar';
 
 export default function Destination() {
   const [articles, setArticles] = useState([]);

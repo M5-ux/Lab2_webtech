@@ -99,7 +99,7 @@ export default function UserPosts() {
                   X
                 </button>
                 <Link
-                  href={`/EditPost?id=${post.id}`}
+                  href={`/editPost?id=${post.id}`}
                   className="bg-gray-600 hover:bg-gray-800 text-white font-bold py-1 px-3 rounded focus:outline-none focus:shadow-outline ml-2"
                 >
                   Modifier
@@ -129,7 +129,7 @@ export default function UserPosts() {
                   X
                 </button>
                 <Link
-                  href={`/EditComment?id=${comment.id}`}
+                  href={`/editComment?id=${comment.id}`}
                   className="bg-gray-600 hover:bg-gray-800 text-white font-bold py-1 px-3 rounded focus:outline-none focus:shadow-outline ml-2"
                 >
                   Modifier

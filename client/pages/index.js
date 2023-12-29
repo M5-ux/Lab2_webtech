@@ -1,9 +1,9 @@
 import Header from '../components/header';
 import Link from 'next/link';
-import DestinationPhare from '../components/DestinationPhare';
+import DestinationPhare from '../components/destinationPhare';
 import About from './about';
 import Contact from './contacts';
-import { useTheme } from '../context/ThemeContext';
+import { useTheme } from '../context/themeContext';
 
 export default function Home() {
   const { isDarkMode } = useTheme();

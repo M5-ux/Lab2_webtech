@@ -2,8 +2,8 @@ import { useEffect, useState, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { supabase } from '../utils/supabase';
-import { useTheme } from '../context/ThemeContext';
-import DarkMode from './DarkMode';
+import { useTheme } from '../context/themeContext';
+import DarkMode from './darkMode';
 
 export default function Header() {
   const { isDarkMode, toggleTheme } = useTheme();
@@ -100,7 +100,7 @@ export default function Header() {
                     Voir profil
                   </Link>
                   <Link
-                    href="/UserPosts"
+                    href="/userPosts"
                     className="block px-4 py-2 text-center text-gray-700 hover:bg-customBlueGreen hover:text-white"
                     onClick={closeDropdown}
                   >

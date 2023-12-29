@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import { supabase } from '../utils/supabase';
-import Account from '../components/Account';
+import Account from '../components/account';
 import { ThemeSupa } from '@supabase/auth-ui-shared';
-import { useTheme } from '../context/ThemeContext';
+import { useTheme } from '../context/themeContext';
 import { Auth } from '@supabase/auth-ui-react';
 
 export default function Home() {

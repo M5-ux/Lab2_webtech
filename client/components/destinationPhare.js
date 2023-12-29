@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { supabase } from '../utils/supabase';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useTheme } from '../context/ThemeContext';
+import { useTheme } from '../context/themeContext';
 
 export default function DestinationPhare() {
   const [articles, setArticles] = useState([]);
