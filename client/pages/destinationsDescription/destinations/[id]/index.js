@@ -1,16 +1,31 @@
 /* eslint-disable @next/next/no-img-element */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import CommentForm from '../../../commentForm.js';
 import { supabase } from '/utils/supabase';
 import Image from 'next/image';
 import Weather from '../../../../components/Weather.js';
-import Link from 'next/link';
 import { useTheme } from '../../../../context/ThemeContext.js';
 
 function UniqueDestination({ article, comments }) {
   const [showCommentForm, setShowCommentForm] = useState(false);
   const { isDarkMode } = useTheme();
   const textColor = isDarkMode ? 'text-white' : 'text-gray-700';
+  const [session, setSession] = useState(supabase.auth.session);
+
+  useEffect(() => {
+    setSession(supabase.auth.session);
+
+    const sessionListener = supabase.auth.onAuthStateChange(
+      (_event, session) => {
+        setSession(session);
+      },
+    );
+
+    return () => {
+      sessionListener.data?.unsubscribe;
+    };
+  }, []);
+
   const handleShowCommentForm = () => {
     setShowCommentForm(true);
   };
