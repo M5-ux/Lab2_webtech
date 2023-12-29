@@ -86,7 +86,7 @@ Nous avons tenus à réaliser quelques bonus :
 - Utilisation de Prettier et ESLint pour le formatage automatique de notre code
 - Utilisation de la librairie AOS pour les animations du contenu des pages
 
-# API
+## API
 
 Pour notre API, nous avons utilisé une API de méteo : [Visualcrossing Weather API](https://www.visualcrossing.com/weather-api)
 Elle se charge de donner la météo en fonction de la destination.
