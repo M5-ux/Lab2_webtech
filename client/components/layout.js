@@ -1,5 +1,4 @@
 import Header from './header';
-import UserInfo from './UserInfo';
 
 export default function Layout({ children }) {
   return (
@@ -10,4 +9,3 @@ export default function Layout({ children }) {
     </div>
   );
 }
-// <UserInfo />

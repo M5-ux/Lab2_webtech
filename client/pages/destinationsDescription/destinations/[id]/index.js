@@ -1,10 +1,8 @@
-/* eslint-disable @next/next/no-img-element */
 import React, { useState, useEffect } from 'react';
 import CommentForm from '../../../commentForm.js';
 import { supabase } from '/utils/supabase';
 import Image from 'next/image';
 import Weather from '../../../../components/Weather.js';
-import Link from 'next/link';
 
 function UniqueDestination({ article, comments }) {
   const [showCommentForm, setShowCommentForm] = useState(false);

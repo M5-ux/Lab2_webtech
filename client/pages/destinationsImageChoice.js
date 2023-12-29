@@ -1,4 +1,3 @@
-// components/ImageUploader.js
 import { useState } from 'react';
 import { supabase } from '../utils/supabase';
 import { useRouter } from 'next/router';
@@ -19,7 +18,7 @@ const ImageUploader = () => {
 
     try {
       const { data, error } = await supabase.storage
-        .from('image_article') // Replace with your actual storage bucket name
+        .from('image_article')
         .upload(`images/${selectedImage.name}`, selectedImage);
 
       if (error) {
@@ -27,12 +26,10 @@ const ImageUploader = () => {
       } else {
         console.log('Image uploaded successfully:', data);
 
-        // Récupérer l'URL de l'image depuis le stockage
         const imageUrl = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/image_article/images/${selectedImage.name}`;
 
-        // Mettre à jour la base de données avec l'URL de l'image
         const { data: updateData, error: updateError } = await supabase
-          .from('articles') // Remplacez 'images' par le nom de votre table dans la base de données
+          .from('articles')
           .update({ image: imageUrl })
           .eq('id', id)
           .single();
