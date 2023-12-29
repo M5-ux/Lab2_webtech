@@ -5,7 +5,7 @@ import { supabase } from '/utils/supabase';
 import Image from 'next/image';
 import Weather from '../../../../components/Weather.js';
 import Link from 'next/link';
-import { useTheme } from '../../../../pages/ThemeContext';
+import { useTheme } from '../../../../context/ThemeContext.js';
 
 function UniqueDestination({ article, comments }) {
   const [showCommentForm, setShowCommentForm] = useState(false);

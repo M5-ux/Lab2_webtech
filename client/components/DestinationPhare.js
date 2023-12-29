@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { supabase } from '../utils/supabase';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useTheme } from '../pages/ThemeContext';
+import { useTheme } from '../context/ThemeContext';
 
 export default function DestinationPhare() {
   const [articles, setArticles] = useState([]);
@@ -67,7 +67,6 @@ export default function DestinationPhare() {
               height={300}
               className="w-40 h-40 object-cover mb-2"
             />
-            <p className="text-sm">{article.description}</p>
           </div>
         </Link>
       ))}

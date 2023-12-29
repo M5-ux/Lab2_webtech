@@ -2,7 +2,7 @@ import { useEffect, useState, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { supabase } from '../utils/supabase';
-import { useTheme } from '../pages/ThemeContext';
+import { useTheme } from '../context/ThemeContext';
 import DarkMode from './DarkMode';
 
 export default function Header() {

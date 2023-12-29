@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { supabase } from '../utils/supabase';
 import Account from '../components/Account';
 import { ThemeSupa } from '@supabase/auth-ui-shared';
-import { useTheme } from '../pages/ThemeContext';
+import { useTheme } from '../context/ThemeContext';
 import { Auth } from '@supabase/auth-ui-react';
 
 export default function Home() {

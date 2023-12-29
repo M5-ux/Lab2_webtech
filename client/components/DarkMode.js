@@ -1,5 +1,5 @@
 import React from 'react';
-import { useTheme } from '../pages/ThemeContext';
+import { useTheme } from '../context/ThemeContext';
 import { MoonIcon, SunIcon } from '@heroicons/react/24/solid';
 
 function DarkMode() {

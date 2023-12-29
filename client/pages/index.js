@@ -3,7 +3,7 @@ import Link from 'next/link';
 import DestinationPhare from '../components/DestinationPhare';
 import About from './about';
 import Contact from './contacts';
-import { useTheme } from '../pages/ThemeContext';
+import { useTheme } from '../context/ThemeContext';
 
 export default function Home() {
   const { isDarkMode } = useTheme();
