@@ -1,6 +1,11 @@
 import Image from 'next/image';
+import { useTheme } from '../pages/ThemeContext';
 
 export default function About() {
+  const { isDarkMode } = useTheme();
+  const bgColor = isDarkMode ? 'bg-dark-background' : 'bg-white';
+  const textColor = isDarkMode ? 'text-white' : 'text-gray-700';
+
   const teamMembers = [
     {
       name: 'Jonathan VÉLIN',
@@ -23,31 +28,31 @@ export default function About() {
   ];
 
   return (
-    <section className="bg-white py-20">
+    <section className={bgColor + ' py-20'}>
       <div className="container mx-auto px-6 md:px-12">
         <div className="flex flex-wrap items-center">
           <div className="w-full md:w-1/2 text-left px-6 mb-6 md:mb-0">
             <h2 className="text-3xl font-bold mb-4 text-customBlueGreen">
               À Propos de SoleyEvazyon
             </h2>
-            <p className="text-gray-700 mb-4">
+            <p className={`${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
               Le nom &quot;SoleyEvazyon&quot; est l&apos;ecriture en créole
               guadeloupéen et martiniquais de &quot;Soleil Evasion&quot;.
             </p>
-            <p className="text-gray-700 mb-4">
+            <p className={`${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
               Fondée en 2023, SoleyEvazyon est une agence de voyage dédiée à
               offrir des expériences inoubliables. Notre passion pour
               l&apos;aventure et la découverte nous pousse à créer des voyages
               uniques et sur mesure pour nos clients. Nous avons ausi souhaité
               faire un clin d&apos;oeil à nos pays d&apos;origines
             </p>
-            <p className="text-gray-700 mb-4">
+            <p className={`${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
               Notre équipe, composée de professionnels du voyage, travaille sans
               relâche pour vous apporter les meilleures destinations et
               activités, en mettant l&apos;accent sur l&apos;authenticité et le
               respect de l&apos;environnement.
             </p>
-            <p className="text-gray-700">
+            <p className={`${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
               Rejoignez-nous pour explorer le monde d&apos;une manière que vous
               n&apos;oublierez jamais.
             </p>
@@ -81,11 +86,17 @@ export default function About() {
                   height={4032}
                   className="w-48 h-48 mx-auto rounded-full object-cover mb-4"
                 />
-                <h3 className="text-2xl font-bold">{member.name}</h3>
+                <h3
+                  className={`text-2xl font-bold ${
+                    isDarkMode ? 'text-white' : 'text-gray-900'
+                  }`}
+                >
+                  {member.name}
+                </h3>
                 <p className="text-customBlueGreen font-semibold">
                   {member.role}
                 </p>
-                <p className="text-gray-600 mt-2">{member.description}</p>
+                <p className={textColor + ' mt-2'}>{member.description}</p>
               </div>
             ))}
           </div>

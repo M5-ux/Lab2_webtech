@@ -2,8 +2,11 @@ import { useEffect, useState, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { supabase } from '../utils/supabase';
+import { useTheme } from '../pages/ThemeContext';
+import DarkMode from './DarkMode';
 
 export default function Header() {
+  const { isDarkMode, toggleTheme } = useTheme();
   const [session, setSession] = useState(null);
   const [showDropdown, setShowDropdown] = useState(false);
   const dropdownRef = useRef(null);
@@ -40,7 +43,13 @@ export default function Header() {
   };
 
   return (
-    <header className="bg-white shadow-sm py-4">
+    <header
+      className={
+        isDarkMode
+          ? 'bg-dark-background text-dark-text shadow-sm py-4'
+          : 'bg-white text-gray-800 shadow-sm py-4'
+      }
+    >
       <div className="container mx-auto flex justify-between items-center px-5">
         <Link href="/">
           <Image
@@ -50,7 +59,7 @@ export default function Header() {
             height={120}
           />
         </Link>
-        <nav className="flex space-x-3">
+        <nav className="flex space-x-3 items-center">
           <Link
             href="/destinations"
             className="text-customBlue hover:text-blue-600 transition duration-300"
@@ -69,7 +78,7 @@ export default function Header() {
           >
             Contactez-nous
           </Link>
-
+          <DarkMode />
           {session ? (
             <div className="relative">
               <button

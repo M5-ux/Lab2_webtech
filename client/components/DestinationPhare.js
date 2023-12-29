@@ -2,10 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { supabase } from '../utils/supabase';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useTheme } from '../pages/ThemeContext';
 
 export default function DestinationPhare() {
   const [articles, setArticles] = useState([]);
-
+  const { isDarkMode } = useTheme();
   useEffect(() => {
     async function loadRandomArticles() {
       try {
@@ -42,14 +43,22 @@ export default function DestinationPhare() {
   }, []);
 
   return (
-    <div className="flex justify-center items-center overflow-x-auto space-x-10 py-4">
+    <div
+      className={`flex justify-center items-center overflow-x-auto space-x-10 py-4 ${
+        isDarkMode ? 'bg-dark-background' : ''
+      }`}
+    >
       {articles.map((article, index) => (
         <Link
           href={`/destinationsDescription/destinations/${article.id}`}
           key={article.id}
           className="flex-shrink-0"
         >
-          <div className="flex flex-col items-center cursor-pointer">
+          <div
+            className={`flex flex-col items-center cursor-pointer ${
+              isDarkMode ? 'text-white' : 'text-gray-800'
+            }`}
+          >
             <h2 className="text-lg mb-2">{article.title}</h2>
             <Image
               src={article.image}
