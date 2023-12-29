@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import React, { useEffect, useState } from 'react';
 import { supabase } from '../utils/supabase';
 import Link from 'next/link';

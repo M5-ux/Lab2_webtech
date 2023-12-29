@@ -11,21 +11,22 @@ export default function UserSpace({ session }) {
 
   useEffect(() => {
     async function chargerArticles() {
-      const user = session.user;
-      const { data, error } = await supabase
-        .from('articles')
-        .select('*')
-        .eq('profile_id', user.id);
+      if (session?.user) {
+        const { data, error } = await supabase
+          .from('articles')
+          .select('*')
+          .eq('profile_id', session.user.id);
 
-      if (error) {
-        console.error('Erreur de récupération des articles', error);
-      } else {
-        setArticles(data);
+        if (error) {
+          console.error('Erreur de récupération des articles', error);
+        } else {
+          setArticles(data);
+        }
       }
     }
 
     chargerArticles();
-  }, [session.user]);
+  }, [session]);
 
   useEffect(() => {
     const lowercasedFilter = recherche.toLowerCase();

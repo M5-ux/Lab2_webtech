@@ -11,6 +11,7 @@ export default function EditComment() {
     if (id) fetchComment(id);
   }, [id]);
 
+  //On recupere tous les commentaires qui ont le meme id que commentId
   async function fetchComment(commentId) {
     let { data, error } = await supabase
       .from('comments')
@@ -26,6 +27,7 @@ export default function EditComment() {
     setComment({ ...comment, content: e.target.value });
   };
 
+  //On met à jour le commentaire modifié
   async function updateComment() {
     const now = new Date();
     const { error } = await supabase

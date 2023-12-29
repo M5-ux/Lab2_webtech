@@ -1,8 +1,10 @@
-import { useState } from 'react';
+/* eslint-disable @next/next/no-img-element */
+import React, { useState } from 'react';
 import CommentForm from '../../../commentForm.js';
 import { supabase } from '/utils/supabase';
 import Image from 'next/image';
 import Weather from '../../../../components/Weather.js';
+import Link from 'next/link';
 
 function UniqueDestination({ article, comments }) {
   const [showCommentForm, setShowCommentForm] = useState(false);
@@ -17,7 +19,11 @@ function UniqueDestination({ article, comments }) {
 
   return (
     <div className="container mx-auto p-4">
-      <article className="shadow-lg rounded-lg overflow-hidden mb-6">
+      {/* Section Destination*/}
+      <article
+        data-aos="fade-up"
+        className="shadow-lg rounded-lg overflow-hidden mb-6"
+      >
         <Image
           src={article.image}
           alt={article.title}
@@ -31,11 +37,16 @@ function UniqueDestination({ article, comments }) {
         </div>
       </article>
 
-      <section className="bg-white shadow rounded-lg p-6 my-4">
+      {/* Section Méteo */}
+      <section
+        data-aos="fade-left"
+        className="bg-white shadow rounded-lg p-6 my-4"
+      >
         <Weather city={article.title} />
       </section>
 
-      <section className="bg-white shadow rounded-lg p-6">
+      {/* Section Commentaire */}
+      <section data-aos="fade-right" className="bg-white shadow rounded-lg p-6">
         <h2 className="text-2xl font-bold mb-4">Commentaires</h2>
         <ul className="list-disc pl-5 mb-6">
           {comments &&
@@ -50,7 +61,7 @@ function UniqueDestination({ article, comments }) {
                   />
                 ) : (
                   <span className="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center text-sm">
-                    {/* Afficher une initiale ou un placeholder si l'avatar n'est pas disponible */}
+                    {/* Placeholder pour l'avatar */}
                   </span>
                 )}
                 <div>
@@ -96,7 +107,7 @@ export async function getServerSideProps(context) {
       profiles:user_id (username, avatar_url)
     `,
     )
-    .eq('id_article', id); 
+    .eq('id_article', id);
 
   if (articleError || commentsError) {
     console.error(

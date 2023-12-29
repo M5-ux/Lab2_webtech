@@ -58,12 +58,6 @@ export default function Header() {
             Destinations
           </Link>
           <Link
-            href="/specials"
-            className="text-customBlue hover:text-blue-600 transition duration-300"
-          >
-            Offres Spéciales
-          </Link>
-          <Link
             href="/about"
             className="text-customBlue hover:text-blue-600 transition duration-300"
           >
@@ -73,7 +67,7 @@ export default function Header() {
             href="/contacts"
             className="text-customBlue hover:text-blue-600 transition duration-300"
           >
-            Contacts
+            Contactez-nous
           </Link>
 
           {session ? (

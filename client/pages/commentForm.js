@@ -1,29 +1,39 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { supabase } from '../utils/supabase';
 
 function CommentForm({ articleId }) {
   const [content, setContent] = useState('');
   const [submitted, setSubmitted] = useState(false);
-  const [formVisible, setFormVisible] = useState(true);
+  const [session, setSession] = useState(null);
   const router = useRouter();
+
+  useEffect(() => {
+    const sessionListener = supabase.auth.onAuthStateChange(
+      (_event, session) => {
+        setSession(session);
+      },
+    );
+
+    // Obtenir la session actuelle
+    setSession(supabase.auth.session);
+    return () => {
+      sessionListener.data?.unsubscribe;
+    };
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (content && !submitted) {
+    if (content && articleId) {
       const { data, error } = await supabase
         .from('comments')
-        .insert([{ id_article: articleId, content }]);
-
-      if (!error) {
-        setSubmitted(true);
-        setFormVisible(false);
-        router.push(`/articlesDescription/articles/${articleId}`);
-      }
+        .insert([
+          { id_article: articleId, content: content, user_id: session.user.id },
+        ]);
+      setSubmitted(true);
+      //router.push('/destinations/:articleId');
     }
   };
-
-  if (!formVisible) return null;
 
   return (
     <div className="container mx-auto px-4 py-8">
@@ -49,7 +59,7 @@ function CommentForm({ articleId }) {
           <button
             type="submit"
             disabled={submitted}
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            className="bg-customBlue hover:bg-customBlueGreen text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
           >
             Soumettre
           </button>

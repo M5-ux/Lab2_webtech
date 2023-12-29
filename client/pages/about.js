@@ -31,16 +31,21 @@ export default function About() {
               À Propos de SoleyEvazyon
             </h2>
             <p className="text-gray-700 mb-4">
+              Le nom &quot;SoleyEvazyon&quot; est l&apos;ecriture en créole
+              guadeloupéen et martiniquais de &quot;Soleil Evasion&quot;.
+            </p>
+            <p className="text-gray-700 mb-4">
               Fondée en 2023, SoleyEvazyon est une agence de voyage dédiée à
               offrir des expériences inoubliables. Notre passion pour
               l&apos;aventure et la découverte nous pousse à créer des voyages
-              uniques et sur mesure pour nos clients.
+              uniques et sur mesure pour nos clients. Nous avons ausi souhaité
+              faire un clin d&apos;oeil à nos pays d&apos;origines
             </p>
             <p className="text-gray-700 mb-4">
               Notre équipe, composée de professionnels du voyage, travaille sans
-              relâche pour vous apporter les meilleures destinations, logements,
-              et activités, en mettant l&apos;accent sur l&apos;authenticité et
-              le respect de l&apos;environnement.
+              relâche pour vous apporter les meilleures destinations et
+              activités, en mettant l&apos;accent sur l&apos;authenticité et le
+              respect de l&apos;environnement.
             </p>
             <p className="text-gray-700">
               Rejoignez-nous pour explorer le monde d&apos;une manière que vous

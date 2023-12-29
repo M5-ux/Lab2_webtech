@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { supabase } from '../utils/supabase';
 
@@ -7,28 +7,40 @@ function DestinationForm({ session }) {
   const [description, setDescription] = useState('');
   const [countries, setCountries] = useState('');
   const [content, setContent] = useState('');
-  const [userId, setUserid] = useState(session.user.id);
+  const [userId, setUserId] = useState('');
   const [submitted, setSubmitted] = useState(false);
   const router = useRouter();
+
+  useEffect(() => {
+    // Mettre à jour l'userId lorsque la session change
+    if (session?.user) {
+      setUserId(session.user.id);
+    }
+  }, [session]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (title && content && description && countries && !submitted) {
-      await supabase
+      const { error } = await supabase
         .from('articles')
-        .insert([{ title, description, countries, content, userId }]);
-      setSubmitted(true);
-      router.push('/destinations');
+        .insert([{ title, description, countries, content, user_id: userId }]);
+
+      if (error) {
+        console.error('Erreur lors de la soumission:', error);
+      } else {
+        setSubmitted(true);
+        router.push('/destinations');
+      }
     }
   };
 
   return (
     <div className="container mx-auto px-4 py-8">
       <section className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-        <h2 className="text-2xl font-bold mb-6">Ajouter un article</h2>
+        <h2 className="text-2xl font-bold mb-6">Ajouter une destination</h2>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label className="block text-gray-700 text-sm font-bold mb-2">
+            <label className="block text-gray-700 text-xl font-bold mb-2">
               Titre:
             </label>
             <input
@@ -40,7 +52,7 @@ function DestinationForm({ session }) {
           </div>
 
           <div>
-            <label className="block text-gray-700 text-sm font-bold mb-2">
+            <label className="block text-gray-700 text-xl font-bold mb-2">
               Description:
             </label>
             <input
@@ -52,7 +64,7 @@ function DestinationForm({ session }) {
           </div>
 
           <div>
-            <label className="block text-gray-700 text-sm font-bold mb-2">
+            <label className="block text-gray-700 text-xl font-bold mb-2">
               Countries:
             </label>
             <input
@@ -64,7 +76,7 @@ function DestinationForm({ session }) {
           </div>
 
           <div>
-            <label className="block text-gray-700 text-sm font-bold mb-2">
+            <label className="block text-gray-700 text-xl font-bold mb-2">
               Contenu:
             </label>
             <textarea
@@ -78,8 +90,7 @@ function DestinationForm({ session }) {
           <button
             type="submit"
             disabled={submitted}
-            onClick={setUserid(session.user.id)}
-            className="bg-customBlue text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            className="bg-customBlue hover:bg-customBlueGreen text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
           >
             Soumettre
           </button>
