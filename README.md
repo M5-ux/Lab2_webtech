@@ -1,10 +1,15 @@
-# Application Node.js avec Routes
+# SoleyEvazyon
 
-Cec est un exemple d'application Node.js simple avec plusieurs routes. L'application utilise le module HTTP pour créer un serveur web et gérer différentes routes pour gerer un stock d'articles.
+SoleyEvazyon est une application web de voyage conçue avec Next.js. Elle offre une plateforme intuitive pour explorer, réserver et partager des expériences de voyage uniques. L'application combine une interface utilisateur élégante avec des fonctionnalités robustes pour gérer un catalogue diversifié de destinations de voyage.
 
 ## Configuration requise
 
-Avant de commencer, assurez-vous d'avoir Node.js installé sur votre système. Vous pouvez le télécharger depuis [le site officiel de Node.js](https://nodejs.org/).
+Pour utiliser ou contribuer à SoleyEvazyon, vous devez avoir les outils suivants installés sur votre système :
+
+- #### Node.js
+  Un environnement d'exécution JavaScript côté serveur. Téléchargez et installez-le depuis [le site officiel de Node.js](https://nodejs.org/).
+- #### Next.js
+  Un framework React pour la production. Next.js est installé via npm ou yarn après l'installation de Node.js.
 
 ## Installation
 
@@ -26,20 +31,23 @@ cd nom-du-repertoire
 npm install
 ```
 
-4. Exécutez la Commande de Build
+Ou, si vous utilisez yarn :
+
+```
+yarn install
+```
+
+## Utilisation
+
+Pour lancer l'application, utilisez l'une des commandes suivantes :
+
+1. Construire pour la Production :
 
 ```
 npm run build
 ```
 
-5. (Optionnel) Pour démarrer l'application en mode développement (rechargement automatique lors des modifications) :
-
-```
-npm run dev
-```
-## Utilisation
-
-Pour lancer l'application, utilisez l'une des commandes suivantes :
+2. Lancer l'Application en Production :
 
 ```
 npm start
@@ -49,17 +57,39 @@ L'application sera accessible à l'adresse [http://localhost:3000](http://localh
 
 ## Routes disponibles
 
-- `/` : Page d'accueil avec un lien vers `/articles`, `/about`, `/contacts`, `/login-controlled` en passanrt par un bouton Login.
-- `/articles` : Permet d'obtenir la liste de tous les articles.
-- `/articles/:articleId` : Permet d'obtenir un article par son ID.
-- `/about` : Affiche les informations du site.
-- `/contacts` : Nos contacts
-- `/login-controlled` : Page de connexion
+- `/` : La page d'accueil présente un aperçu des services et propose des liens rapides vers nos destinations, informations, contacts, et un accès utilisateur via le bouton de connexion.
+- `/destinations` : Explorez une liste complète de destinations captivantes à travers le monde.
+- `/destinationsDescription/destinations/[id]` : Plongez dans les détails et les merveilles de chaque destination.
+- `/about` : Apprenez-en plus sur SoleyEvazyon et notre passion pour les voyages.
+- `/contacts` : Obtenez nos coordonnées pour une assistance ou des questions.
+- `/login` : Connectez-vous pour une expérience personnalisée et des fonctionnalités exclusives.
 
 ## Structure du projet
 
-- `pages` : Toutes les pages JS de notre site
-- `styles` : Gestionnaire de styles du site dépendances, les scripts de démarrage, etc.
+Le projet est organisé comme suit :
+
+- `client/` : Contient les scripts clients spécifiques, pour gerer les logiques côté client.
+  - `components/` : Réutilisables à travers le projet, nos composants rendent l'interface utilisateur intuitive et engageante.
+  - `pages/` : Chaque fichier JS représente une page distincte de notre site, grâce au routage intuitif de Next.js.
+  - `styles/` : Contient les feuilles de style globales et les modules CSS pour un design cohérent et élégant.
+  - `utils/` : Fonctions utilitaires et configurations, y compris l'intégration avec Supabase pour les fonctionnalités backend.
+  - `public/` : Assets publics tels que images et logos utilisés sur le site.
+- `server/` : Contient les scripts serveur spécifiques, pour gérer les API ou les logiques côté serveur.
+- `supabase/`: Dossier dédié à la configuration et aux scripts relatifs à Supabase, le Backend-as-a-Service que nous utilisons pour la gestion des données et l'authentification.
+
+Chaque dossier est essentiel pour organiser le code de l'application et séparer les préoccupations pour la maintenabilité et l'évolutivité.
+
+## Bonus
+
+Nous avons tenus à réaliser quelques bonus :
+
+- Utilisation de Prettier et ESLint pour le formatage automatique de notre code
+- Utilisation de la librairie AOS pour les animations du contenu des pages
+
+# API
+
+Pour notre API, nous avons utilisé une API de méteo : [Visualcrossing Weather API](https://www.visualcrossing.com/weather-api)
+Elle se charge de donner la météo en fonction de la destination.
 
 ## Contribuer
 
