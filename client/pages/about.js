@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { useTheme } from '../context/ThemeContext';
+import { useTheme } from '../context/themeContext';
 
 export default function About() {
   const { isDarkMode } = useTheme();

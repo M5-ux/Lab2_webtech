@@ -3,8 +3,8 @@ import React, { useState, useEffect } from 'react';
 import CommentForm from '../../../commentForm.js';
 import { supabase } from '/utils/supabase';
 import Image from 'next/image';
-import Weather from '../../../../components/Weather.js';
-import { useTheme } from '../../../../context/ThemeContext.js';
+import Weather from '../../../../components/weather.js';
+import { useTheme } from '../../../../context/themeContext.js';
 
 function UniqueDestination({ article, comments }) {
   const [showCommentForm, setShowCommentForm] = useState(false);
@@ -118,12 +118,16 @@ function UniqueDestination({ article, comments }) {
             ))}
         </ul>
 
-        <button
-          onClick={handleShowCommentForm}
-          className="bg-customBlue hover:bg-customBlueGreen text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-        >
-          Ajouter un commentaire
-        </button>
+        {session ? (
+          <button
+            onClick={handleShowCommentForm}
+            className="bg-customBlue hover:bg-customBlueGreen text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+          >
+            Ajouter un commentaire
+          </button>
+        ) : (
+          <div></div>
+        )}
 
         {showCommentForm && <CommentForm articleId={article.id} />}
       </section>

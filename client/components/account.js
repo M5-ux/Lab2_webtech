@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { supabase } from '../utils/supabase';
-import BoutonDeco from '../components/BoutonDeco';
-import Avatar from './Avatar';
+import BoutonDeco from './boutonDeco';
+import Avatar from './avatar';
 
 export default function Account({ session }) {
   const [loading, setLoading] = useState(true);

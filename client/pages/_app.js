@@ -5,7 +5,7 @@ import { createPagesBrowserClient } from '@supabase/auth-helpers-nextjs';
 import { SessionContextProvider } from '@supabase/auth-helpers-react';
 import { useState, useEffect } from 'react';
 import Layout from '../components/layout';
-import { ThemeProvider } from '../context/ThemeContext';
+import { ThemeProvider } from '../context/themeContext';
 
 function MyApp({ Component, pageProps }) {
   const [supabaseClient] = useState(() => createPagesBrowserClient());

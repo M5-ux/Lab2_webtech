@@ -2,34 +2,51 @@ import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { supabase } from '../utils/supabase';
 
-function DestinationForm({ session }) {
+function DestinationForm() {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [countries, setCountries] = useState('');
   const [content, setContent] = useState('');
-  const [userId, setUserId] = useState('');
+  const [price, setPrice] = useState('');
   const [submitted, setSubmitted] = useState(false);
   const router = useRouter();
+  const [session, setSession] = useState(supabase.auth.session);
 
   useEffect(() => {
-    // Mettre à jour l'userId lorsque la session change
-    if (session?.user) {
-      setUserId(session.user.id);
-    }
-  }, [session]);
+    setSession(supabase.auth.session);
+
+    const sessionListener = supabase.auth.onAuthStateChange(
+      (_event, session) => {
+        setSession(session);
+      },
+    );
+
+    return () => {
+      sessionListener.data?.unsubscribe;
+    };
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (title && content && description && countries && !submitted) {
-      const { error } = await supabase
+    if (title && content && price && description && countries && !submitted) {
+      const { data } = await supabase
         .from('articles')
-        .insert([{ title, description, countries, content, user_id: userId }]);
+        .insert([
+          {
+            title,
+            description,
+            countries,
+            content,
+            profile_id: session.user.id,
+          },
+        ])
+        .select();
 
-      if (error) {
-        console.error('Erreur lors de la soumission:', error);
-      } else {
+      if (data) {
         setSubmitted(true);
-        router.push('/destinations');
+        router.push(`/destinationsImageChoice?id=${data[0].id}`);
+      } else {
+        console.error('Erreur lors de la soumission:');
       }
     }
   };
@@ -41,7 +58,7 @@ function DestinationForm({ session }) {
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
             <label className="block text-gray-700 text-xl font-bold mb-2">
-              Titre:
+              Ville:
             </label>
             <input
               type="text"
@@ -77,6 +94,18 @@ function DestinationForm({ session }) {
 
           <div>
             <label className="block text-gray-700 text-xl font-bold mb-2">
+              Price:
+            </label>
+            <input
+              type="text"
+              value={price}
+              onChange={(e) => setPrice(e.target.value)}
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            />
+          </div>
+
+          <div>
+            <label className="block text-gray-700 text-xl font-bold mb-2">
               Contenu:
             </label>
             <textarea
@@ -92,7 +121,7 @@ function DestinationForm({ session }) {
             disabled={submitted}
             className="bg-customBlue hover:bg-customBlueGreen text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
           >
-            Soumettre
+            Choisir une image
           </button>
         </form>
       </section>

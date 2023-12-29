@@ -36,7 +36,7 @@ export default function EditComment() {
       .match({ id });
 
     if (error) console.error(error);
-    else router.push('/UserPosts');
+    else router.push('/userPosts');
   }
 
   return (
