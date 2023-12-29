@@ -10,6 +10,7 @@ export default function UserPosts() {
 
   useEffect(() => {
     setSession(supabase.auth.session);
+  //test
 
     const sessionListener = supabase.auth.onAuthStateChange(
       (_event, session) => {
